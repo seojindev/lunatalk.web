@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import useInitDataQuery from '../../hooks/query/useInitDataQuery';
 import { appInitState } from '../../states/initData';
+import Spinner from './Spinner';
 
 interface Props {
   children: React.ReactNode;
@@ -24,10 +25,9 @@ function Layout(props: Props) {
   }, [error]);
 
   const { children } = props;
-  isLoading && <div>lodding</div>;
 
   return isLoading ? (
-    <div>loadding</div>
+    <Spinner />
   ) : (
     <div>
       {initState?.product_category.map((item) => (
