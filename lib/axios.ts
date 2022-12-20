@@ -14,10 +14,10 @@ const axiosDefualtHeader: AxiosRequestConfig = {
 
 const instance = axios.create(axiosDefualtHeader);
 
-export default function client({
+export default async function client({
   url,
   method,
-  body: data,
+  body,
   headers,
 }: {
   url: string;
@@ -25,12 +25,15 @@ export default function client({
   body?: { [key: string]: any };
   headers?: { [key: string]: any };
 }) {
-  instance
-    .request({ url, method, data, headers })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
+  try {
+    const { data } = await instance.request({
+      url,
+      method,
+      data: body,
+      headers,
     });
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 }
