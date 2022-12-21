@@ -1,7 +1,10 @@
+import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import useInitDataQuery from '../../hooks/query/useInitDataQuery';
-import { appInitState } from '../../states/initData';
+import { AppBase, appInitState } from '../../states/initData';
+import { Footer } from './footer';
+import { Header } from './header';
 import Spinner from './Spinner';
 
 interface Props {
@@ -9,16 +12,12 @@ interface Props {
 }
 
 function Layout(props: Props) {
-  const { data, error, isLoading } = useInitDataQuery();
-
   const [initState, setInitState] = useRecoilState(appInitState);
-
-  useEffect(() => {
-    if (!data) return;
-    setInitState(data.result);
-  }, [data]);
-
-  console.log(isLoading, initState);
+  const { error, isLoading } = useInitDataQuery({
+    onSuccess: ({ result }: { result: AppBase }) => {
+      setInitState(result);
+    },
+  });
 
   useEffect(() => {
     // 에러시 처리해야함.
@@ -30,10 +29,9 @@ function Layout(props: Props) {
     <Spinner />
   ) : (
     <div>
-      {initState?.product_category.map((item) => (
-        <div key={item.uuid}>{item.name}</div>
-      ))}
+      <Header initState={initState} />
       {children}
+      <Footer />
     </div>
   );
 }
