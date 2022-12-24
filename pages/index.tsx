@@ -13,15 +13,18 @@ import {
   getMainSlideData,
 } from '../lib/api/main';
 import useMainDataQuery from '../hooks/query/useMainDataQuery';
-import Categories from '../components/main/categories';
+import Categories from '../components/main/Categories';
+import BestItem from '../components/main/BestItem';
+import NewItem from '../components/main/NewItem';
 
 const Home: NextPage = () => {
   const { categories, bestItems, newItems, noticeItems } = useMainDataQuery();
 
   return (
     <>
-      <div className="font-extrabold text-xl">main</div>
       <Categories categories={categories} />
+      <BestItem />
+      <NewItem />
     </>
   );
 };

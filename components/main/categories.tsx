@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import CategoryItem from './elements/categoryItem';
+import CategoryItem from './elements/CategoryItem';
 
 interface Props {
   categories: {
@@ -32,7 +32,7 @@ function Categories({ categories }: Props) {
   }, [categories]);
 
   return (
-    <div className="flex gap-3 justify-between py-4">
+    <div className="flex gap-3 justify-between py-4 mb-14">
       {category &&
         category.map((item) => (
           <CategoryItem

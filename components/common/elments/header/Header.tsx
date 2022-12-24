@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsBag, BsFillPersonFill, BsSearch } from 'react-icons/bs';
-import { AppBase } from '../../../states/initData';
+import { AppBase } from '../../../../states/initData';
 
 interface Props {
   initState: AppBase | null;

@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import useInitDataQuery from '../../hooks/query/useInitDataQuery';
 import { AppBase, appInitState } from '../../states/initData';
-import { Footer } from './footer';
-import { Header } from './header';
+import { Footer, Header } from './elments';
+
 import Spinner from './Spinner';
 
 interface Props {
