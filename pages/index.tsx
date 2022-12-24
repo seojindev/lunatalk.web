@@ -12,23 +12,11 @@ import {
   getMainProductCategoryData,
   getMainSlideData,
 } from '../lib/api/main';
-import Categories from '../components/main/Categories';
+import useMainDataQuery from '../hooks/query/useMainDataQuery';
+import Categories from '../components/main/categories';
 
 const Home: NextPage = () => {
-  const [
-    { data: categories },
-    { data: bestItems },
-    { data: newItems },
-    { data: noticeItem },
-  ] = useQueries({
-    queries: [
-      // { queryKey: ['slides'], queryFn: getMainSlideData },
-      { queryKey: ['categories'], queryFn: getMainProductCategoryData },
-      { queryKey: ['bestItems'], queryFn: getMainBestItemData },
-      { queryKey: ['newItems'], queryFn: getMainNewItemData },
-      { queryKey: ['notices'], queryFn: getMainNoticeData },
-    ],
-  });
+  const { categories, bestItems, newItems, noticeItems } = useMainDataQuery();
 
   return (
     <>

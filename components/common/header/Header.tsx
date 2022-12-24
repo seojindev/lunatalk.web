@@ -25,9 +25,9 @@ function Header(props: Props) {
         </Link>
         <nav className="flex gap-5 items-center">
           {initState?.product_category.map((item) => (
-            <span key={item.uuid} className="text-[16px]">
-              {item.name}
-            </span>
+            <Link href={`/category/${item.uuid}`} key={item.uuid}>
+              <a className="text-[16px]">{item.name}</a>
+            </Link>
           ))}
         </nav>
         <div className="flex gap-5 items-center">
