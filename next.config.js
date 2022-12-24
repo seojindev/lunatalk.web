@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['admin.lunatalk.co.kr'],
+    domains: ['admin.lunatalk.co.kr', 'media.lunatalk.co.kr'],
   },
 };
 

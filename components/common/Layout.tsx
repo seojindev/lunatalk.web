@@ -14,7 +14,7 @@ interface Props {
 function Layout(props: Props) {
   const [initState, setInitState] = useRecoilState(appInitState);
   const { error, isLoading } = useInitDataQuery({
-    onSuccess: ({ result }: { result: AppBase }) => {
+    onSuccess: (result: AppBase) => {
       setInitState(result);
     },
   });
@@ -30,7 +30,7 @@ function Layout(props: Props) {
   ) : (
     <div>
       <Header initState={initState} />
-      {children}
+      <div className="max-w-[1200px] mx-auto">{children}</div>
       <Footer />
     </div>
   );

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { BsBag, BsFillPersonFill, BsSearch } from 'react-icons/bs';
 import { AppBase } from '../../../states/initData';
 
@@ -11,13 +12,17 @@ function Header(props: Props) {
   return (
     <header className="max-w-[1250px] mx-auto py-5 items-center">
       <div className="flex justify-between">
-        <Image
-          src={
-            'http://admin.lunatalk.co.kr/static/media/logo.e0e49014f4ed6f070031.jpg'
-          }
-          width={103}
-          height={45}
-        />
+        <Link href={'/'} className="cursor-pointer">
+          <a>
+            <Image
+              src={
+                'http://admin.lunatalk.co.kr/static/media/logo.e0e49014f4ed6f070031.jpg'
+              }
+              width={103}
+              height={45}
+            />
+          </a>
+        </Link>
         <nav className="flex gap-5 items-center">
           {initState?.product_category.map((item) => (
             <span key={item.uuid} className="text-[16px]">

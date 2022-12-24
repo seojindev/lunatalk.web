@@ -32,7 +32,8 @@ export default async function client({
       data: body,
       headers,
     });
-    return data;
+
+    return data.result ? data.result : [];
   } catch (e) {
     console.log(e);
   }
