@@ -6,7 +6,12 @@ import {
   getMainNoticeData,
   getMainProductCategoryData,
 } from '../lib/api/main';
-import MainComponent from '../components/main/MainComponent';
+import dynamic from 'next/dynamic';
+// import MainComponent from '../components/main/MainComponent';
+
+const MainComponent = dynamic<any>(
+  () => import('../components/main/MainComponent'),
+);
 
 const Home: NextPage = () => {
   return <MainComponent />;
