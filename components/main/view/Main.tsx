@@ -1,6 +1,6 @@
-import BestItem from '../BestItem';
-import Categories from '../Categories';
-import NewItem from '../NewItem';
+import BestItem from './BestItem';
+import Categories from './Categories';
+import NewItem from './NewItem';
 
 function Main(props: any) {
   const { categories } = props;

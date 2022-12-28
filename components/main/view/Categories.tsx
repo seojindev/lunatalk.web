@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { MainCategory } from '../../types/main';
-import CategoryItem from './elements/CategoryItem';
+import { MainCategory } from '../../../types/main';
+import CategoryItem from '../elements/CategoryItem';
 
 interface Props {
   categories: MainCategory[];
