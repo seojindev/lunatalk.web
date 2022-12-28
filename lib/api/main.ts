@@ -1,4 +1,4 @@
-import { BestItem, mainCategory, NewItem } from '../../types/api';
+import { BestItem, mainCategory, NewItem, Notice } from '../../types/api';
 import client from '../axios';
 
 export function getMainSlideData() {
@@ -26,8 +26,8 @@ export function getMainNewItemData(): Promise<NewItem[] | []> {
   });
 }
 
-export function getMainNoticeData() {
-  return client({
+export function getMainNoticeData(): Promise<Notice[] | []> {
+  return client<Notice[]>({
     method: 'GET',
     url: '/api/front/v1/pages/main/main-notice',
   });

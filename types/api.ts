@@ -15,3 +15,13 @@ export interface NewItem {
   uuid: string;
   product: Product;
 }
+
+export interface Notice {
+  category: {
+    code_id: number;
+    code_name: string;
+  };
+  created_at: string;
+  title: string;
+  uuid: string;
+}
