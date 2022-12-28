@@ -3,12 +3,12 @@ import Categories from './Categories';
 import NewItem from './NewItem';
 
 function Main(props: any) {
-  const { categories } = props;
+  const { categories, bestItems, newItems } = props;
   return (
     <>
       <Categories categories={categories} />
-      <BestItem />
-      <NewItem />
+      <BestItem items={bestItems} />
+      <NewItem items={newItems} />
     </>
   );
 }

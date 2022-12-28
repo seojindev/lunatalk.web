@@ -14,7 +14,7 @@ const axiosDefualtHeader: AxiosRequestConfig = {
 
 const instance = axios.create(axiosDefualtHeader);
 
-export default async function client({
+export default async function client<T>({
   url,
   method,
   body,
@@ -24,7 +24,7 @@ export default async function client({
   method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   body?: { [key: string]: any };
   headers?: { [key: string]: any };
-}) {
+}): Promise<T> {
   try {
     const { data } = await instance.request({
       url,
@@ -36,5 +36,6 @@ export default async function client({
     return data.result ? data.result : [];
   } catch (e) {
     console.log(e);
+    throw e;
   }
 }
