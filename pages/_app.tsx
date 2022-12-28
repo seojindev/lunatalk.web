@@ -14,9 +14,11 @@ function MyApp({ Component, pageProps }: any) {
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Hydrate state={pageProps.dehydratedState}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Hydrate>
       </QueryClientProvider>
     </RecoilRoot>
   );

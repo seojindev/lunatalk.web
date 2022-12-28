@@ -1,4 +1,4 @@
-import { ProductItem } from '../../common/elments';
+import { ProductItem } from '../../common/elements';
 
 function EventProductBox() {
   return (
@@ -8,7 +8,7 @@ function EventProductBox() {
       </div>
       <div className="flex justify-between">
         {[1, 2, 3, 4].map((item) => (
-          <ProductItem />
+          <ProductItem key={item} />
         ))}
       </div>
     </div>

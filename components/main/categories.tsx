@@ -1,18 +1,9 @@
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { MainCategory } from '../../types/main';
 import CategoryItem from './elements/CategoryItem';
 
 interface Props {
-  categories: {
-    image: {
-      file_name: string;
-      width: number;
-      height: number;
-      url: string;
-    };
-    name: string;
-    uuid: string;
-  }[];
+  categories: MainCategory[];
 }
 
 function Categories({ categories }: Props) {
