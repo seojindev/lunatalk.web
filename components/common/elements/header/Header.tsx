@@ -4,40 +4,46 @@ import { BsBag, BsFillPersonFill, BsSearch } from 'react-icons/bs';
 import { AppBase } from '../../../../types/common';
 
 interface Props {
-  initState: AppBase;
+  initState: AppBase | undefined;
 }
 
 function Header(props: Props) {
   const { initState } = props;
   return (
     <header className="max-w-[1250px] mx-auto py-5 items-center">
-      <div className="flex justify-between">
-        <Link href={'/'} className="cursor-pointer">
-          <a>
-            <Image
-              src={
-                'http://admin.lunatalk.co.kr/static/media/logo.e0e49014f4ed6f070031.jpg'
-              }
-              width={103}
-              height={45}
-            />
-          </a>
+      <div className="justify-between grid grid-cols-3 grid-areas-horizontal tablet:grid-areas-vertical">
+        <Link
+          href={'/'}
+          className="cursor-pointer grid-in-[logo] w-[103px] tablet:w-[95px]"
+        >
+          <Image
+            src={
+              'http://admin.lunatalk.co.kr/static/media/logo.e0e49014f4ed6f070031.jpg'
+            }
+            alt="logo"
+            width={255}
+            height={111}
+          />
         </Link>
-        <nav className="flex gap-5 items-center">
+        <nav className="flex gap-5 items-center justify-center grid-in-[menu]">
           {initState?.product_category.map((item) => (
-            <Link href={`/category/${item.uuid}`} key={item.uuid}>
-              <a className="text-[16px]">{item.name}</a>
+            <Link
+              href={`/category/${item.uuid}`}
+              key={item.uuid}
+              className='className="text-[16px] tablet:text-[14px] tablet:block tablet:w-full text-center tablet:p-3'
+            >
+              {item.name}
             </Link>
           ))}
         </nav>
-        <div className="flex gap-5 items-center">
-          <span className="text-[23px] hover:text-[#6f42c1]">
+        <div className="flex gap-5 items-center justify-end grid-in-[side]">
+          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1]">
             <BsSearch />
           </span>
-          <span className="text-[23px] hover:text-[#6f42c1]">
+          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1]">
             <BsFillPersonFill />
           </span>
-          <span className="text-[23px] hover:text-[#6f42c1]">
+          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1]">
             <BsBag />
           </span>
         </div>

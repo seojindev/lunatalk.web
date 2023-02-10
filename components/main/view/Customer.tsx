@@ -29,14 +29,16 @@ function Customer(props: CustomerProps) {
           NOTICE
         </h3>
         {_.map(items, (item) => (
-          <Link href={`/notice/${item.uuid}`} key={item.uuid}>
-            <a className="flex justify-between -tracking-[1.2px]">
-              <p>
-                <strong className="mr-2">[{item.category.code_name}]</strong>
-                {item.title}
-              </p>
-              <p>{item.created_at}</p>
-            </a>
+          <Link
+            href={`/notice/${item.uuid}`}
+            key={item.uuid}
+            className="flex justify-between -tracking-[1.2px]"
+          >
+            <p>
+              <strong className="mr-2">[{item.category.code_name}]</strong>
+              {item.title}
+            </p>
+            <p>{item.created_at}</p>
           </Link>
         ))}
       </div>

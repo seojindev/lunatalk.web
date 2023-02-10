@@ -15,7 +15,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "lodash": "^4.17.21",
-    "next": "12.3.1",
+    "next": "13",
     "prettier": "^2.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -25,6 +25,7 @@
     "recoil": "^0.7.6"
   },
   "devDependencies": {
+    "@savvywombat/tailwindcss-grid-areas": "^3.0.1",
     "@types/node": "18.7.23",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

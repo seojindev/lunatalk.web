@@ -14,9 +14,12 @@ function ProductItem(props: ProductItemProps) {
     <div className="flex flex-col gap-2">
       <div>
         <Link href={`/product/${item.uuid}`}>
-          <a>
-            <Image src={item.rep_image.url} width={270} height={270} />
-          </a>
+          <Image
+            src={item.rep_image.url}
+            alt={item.name}
+            width={300}
+            height={300}
+          />
         </Link>
       </div>
       <div className="text-center">
