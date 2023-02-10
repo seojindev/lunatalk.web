@@ -1,9 +1,5 @@
-import { useIsFetching } from '@tanstack/react-query';
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import useInitDataQuery from '../../hooks/query/useInitDataQuery';
-import { appInitState } from '../../states/initData';
-import { AppBase } from '../../types/common';
+
 import { Footer, Header } from './elements';
 
 import Spinner from './Spinner';
@@ -13,19 +9,8 @@ interface Props {
 }
 
 function Layout(props: Props) {
-  const [initState, setInitState] = useRecoilState(appInitState);
-  const { error } = useInitDataQuery({
-    onSuccess: (result: AppBase) => {
-      setInitState(result);
-    },
-  });
-
-  useEffect(() => {
-    // 에러시 처리해야함.
-  }, [error]);
-
   const { children } = props;
-
+  const { data: initState } = useInitDataQuery();
   return (
     <div>
       <Spinner />

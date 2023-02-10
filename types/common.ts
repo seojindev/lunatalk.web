@@ -50,3 +50,8 @@ export interface Product {
   };
   uuid: string;
 }
+
+export interface ProductList {
+  name: string;
+  items: Product[];
+}

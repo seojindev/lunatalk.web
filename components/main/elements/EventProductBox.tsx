@@ -1,12 +1,9 @@
-import { Product } from '../../../types/common';
+import { ProductList } from '../../../types/common';
 import { ProductItem } from '../../common/elements';
 
-interface ProductListProps {
-  name: string;
-  items: Product[];
-}
+type EventProductBoxProps = ProductList;
 
-function EventProductBox(props: ProductListProps) {
+function EventProductBox(props: EventProductBoxProps) {
   const { name, items } = props;
   return (
     <div className="mb-14">

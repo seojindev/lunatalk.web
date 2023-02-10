@@ -8,15 +8,15 @@ import {
   getMainProductCategoryData,
 } from '../../lib/api/main';
 import { queryKeys } from '../../lib/query/queryKeys';
-import { BestItem, NewItem } from '../../types/api';
+import { BestItem, NewItem, Notice } from '../../types/api';
 import { Product } from '../../types/common';
-import { MainCategory } from '../../types/main';
+import { Category, MainCategory } from '../../types/main';
 
-interface MainData {
-  categories: MainCategory[];
+export interface MainData {
+  categories: Category[];
   newItems: Product[];
   bestItems: Product[];
-  noticeItems: any[];
+  noticeItems: Notice[];
 }
 
 function useMainDataQuery() {
@@ -28,12 +28,16 @@ function useMainDataQuery() {
   });
   useQueries({
     queries: [
-      // { queryKey: ['slides'], queryFn: getMainSlideData },
       {
         queryKey: [queryKeys.main.categories],
         queryFn: getMainProductCategoryData,
-        onSuccess: (data: any) => {
-          setMainData((prev) => ({ ...prev, categories: data }));
+        onSuccess: (data: MainCategory[]) => {
+          const categories = _.map(data, (item) => ({
+            name: item.name,
+            uuid: item.uuid,
+            url: item.image.url || '',
+          }));
+          setMainData((prev) => ({ ...prev, categories }));
         },
       },
       {
@@ -57,7 +61,7 @@ function useMainDataQuery() {
       {
         queryKey: [queryKeys.main.noticeItems],
         queryFn: getMainNoticeData,
-        onSuccess: (data: any) => {
+        onSuccess: (data: Notice[]) => {
           setMainData((prev) => ({ ...prev, noticeItems: data }));
         },
       },

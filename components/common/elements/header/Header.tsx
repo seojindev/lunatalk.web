@@ -4,7 +4,7 @@ import { BsBag, BsFillPersonFill, BsSearch } from 'react-icons/bs';
 import { AppBase } from '../../../../types/common';
 
 interface Props {
-  initState: AppBase | null;
+  initState: AppBase;
 }
 
 function Header(props: Props) {

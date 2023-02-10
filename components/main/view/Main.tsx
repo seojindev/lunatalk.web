@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import { MainData } from '../../../hooks/query/useMainDataQuery';
 import BestItem from './BestItem';
 import Categories from './Categories';
 import Customer from './Customer';
 import NewItem from './NewItem';
 
-function Main(props: any) {
+function Main(props: MainData) {
   const { categories, bestItems, newItems, noticeItems } = props;
   return (
     <>

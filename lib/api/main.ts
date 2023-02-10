@@ -5,28 +5,28 @@ export function getMainSlideData() {
   return client({ method: 'GET', url: '/api/front/v1/pages/main/main-slide' });
 }
 
-export function getMainProductCategoryData(): Promise<mainCategory[] | []> {
+export function getMainProductCategoryData(): Promise<mainCategory[]> {
   return client<mainCategory[]>({
     method: 'GET',
     url: '/api/front/v1/pages/main/main-product-category',
   });
 }
 
-export function getMainBestItemData(): Promise<BestItem[] | []> {
+export function getMainBestItemData(): Promise<BestItem[]> {
   return client<BestItem[]>({
     method: 'GET',
     url: '/api/front/v1/pages/main/main-product-best-item',
   });
 }
 
-export function getMainNewItemData(): Promise<NewItem[] | []> {
+export function getMainNewItemData(): Promise<NewItem[]> {
   return client<NewItem[]>({
     method: 'GET',
     url: '/api/front/v1/pages/main/main-product-new-item',
   });
 }
 
-export function getMainNoticeData(): Promise<Notice[] | []> {
+export function getMainNoticeData(): Promise<Notice[]> {
   return client<Notice[]>({
     method: 'GET',
     url: '/api/front/v1/pages/main/main-notice',

@@ -1,10 +1,5 @@
-export interface MainCategory {
+export interface Category {
   name: string;
   uuid: string;
-  image: {
-    file_name: string;
-    url: string;
-    width: number;
-    height: number;
-  };
+  url: string;
 }

@@ -7,7 +7,7 @@ import {
   getMainProductCategoryData,
 } from '../lib/api/main';
 import dynamic from 'next/dynamic';
-// import MainComponent from '../components/main/MainComponent';
+import { queryKeys } from '../lib/query/queryKeys';
 
 const MainComponent = dynamic<any>(
   () => import('../components/main/MainComponent'),
@@ -23,12 +23,18 @@ export async function getServerSideProps() {
   // await queryClient.prefetchQuery(['slides'], () => getMainSlideData());
   await Promise.all([
     // queryClient.prefetchQuery(['slides'], () => getMainSlideData()),
-    queryClient.prefetchQuery(['categories'], () =>
+    queryClient.prefetchQuery([queryKeys.main.categories], () =>
       getMainProductCategoryData(),
     ),
-    queryClient.prefetchQuery(['bestItems'], () => getMainBestItemData()),
-    queryClient.prefetchQuery(['newItems'], () => getMainNewItemData()),
-    queryClient.prefetchQuery(['notices'], () => getMainNoticeData()),
+    queryClient.prefetchQuery([queryKeys.main.bestItems], () =>
+      getMainBestItemData(),
+    ),
+    queryClient.prefetchQuery([queryKeys.main.newItems], () =>
+      getMainNewItemData(),
+    ),
+    queryClient.prefetchQuery([queryKeys.main.noticeItems], () =>
+      getMainNoticeData(),
+    ),
   ]);
 
   return {
