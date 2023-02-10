@@ -9,6 +9,7 @@ interface ProductItemProps {
 
 function ProductItem(props: ProductItemProps) {
   const { item } = props;
+
   return (
     <div className="flex flex-col gap-2">
       <div>

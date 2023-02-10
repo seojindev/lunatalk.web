@@ -1,3 +1,4 @@
+import { useIsFetching } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import useInitDataQuery from '../../hooks/query/useInitDataQuery';
@@ -13,7 +14,7 @@ interface Props {
 
 function Layout(props: Props) {
   const [initState, setInitState] = useRecoilState(appInitState);
-  const { error, isLoading } = useInitDataQuery({
+  const { error } = useInitDataQuery({
     onSuccess: (result: AppBase) => {
       setInitState(result);
     },
@@ -25,10 +26,9 @@ function Layout(props: Props) {
 
   const { children } = props;
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  return (
     <div>
+      <Spinner />
       <Header initState={initState} />
       <div className="max-w-[1200px] mx-auto">{children}</div>
       <Footer />
