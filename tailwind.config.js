@@ -13,8 +13,8 @@ module.exports = {
     },
     screens: {
       desktop: { max: '1200px' },
-      tablet: { max: '768px' },
-      moblie: { max: '375px' },
+      tablet: { max: '1023px' },
+      mobile: { max: '767px' },
     },
   },
   plugins: [require('@savvywombat/tailwindcss-grid-areas')],

@@ -7,7 +7,7 @@ interface Props {
 
 function Categories({ categories }: Props) {
   return (
-    <div className="flex gap-3 justify-between py-4 mb-14">
+    <div className="grid grid-cols-4 gap-3 justify-between py-4 mb-14 tablet:grid-cols-2 tablet:mb-5">
       {categories &&
         categories.map((item) => (
           <CategoryItem

@@ -10,7 +10,7 @@ interface Props {
 function Header(props: Props) {
   const { initState } = props;
   return (
-    <header className="max-w-[1250px] mx-auto py-5 items-center">
+    <header className="max-w-[1250px] mx-auto py-5 items-center px-2">
       <div className="justify-between grid grid-cols-3 grid-areas-horizontal tablet:grid-areas-vertical">
         <Link
           href={'/'}

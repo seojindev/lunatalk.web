@@ -15,7 +15,7 @@ function Layout(props: Props) {
     <div>
       <Spinner />
       <Header initState={initState} />
-      <div className="max-w-[1200px] mx-auto">{children}</div>
+      <div className="max-w-[1200px] mx-auto tablet:px-2">{children}</div>
       <Footer />
     </div>
   );
