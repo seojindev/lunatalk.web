@@ -1,6 +1,6 @@
 import { Product } from './common';
 
-export interface mainCategory {
+export interface MainCategory {
   name: string;
   uuid: string;
   image: { fime_name: string; height: number; width: number; url: string };

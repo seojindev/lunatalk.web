@@ -8,9 +8,9 @@ import {
   getMainProductCategoryData,
 } from '../../lib/api/main';
 import { queryKeys } from '../../lib/query/queryKeys';
-import { BestItem, NewItem, Notice } from '../../types/api';
+import { BestItem, MainCategory, NewItem, Notice } from '../../types/api';
 import { Product } from '../../types/common';
-import { Category, MainCategory } from '../../types/main';
+import { Category } from '../../types/main';
 
 export interface MainData {
   categories: Category[];

@@ -1,12 +1,12 @@
-import { BestItem, mainCategory, NewItem, Notice } from '../../types/api';
+import { BestItem, MainCategory, NewItem, Notice } from '../../types/api';
 import client from '../axios';
 
 export function getMainSlideData() {
   return client({ method: 'GET', url: '/api/front/v1/pages/main/main-slide' });
 }
 
-export function getMainProductCategoryData(): Promise<mainCategory[]> {
-  return client<mainCategory[]>({
+export function getMainProductCategoryData(): Promise<MainCategory[]> {
+  return client<MainCategory[]>({
     method: 'GET',
     url: '/api/front/v1/pages/main/main-product-category',
   });
