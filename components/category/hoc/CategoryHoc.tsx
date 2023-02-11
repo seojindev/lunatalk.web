@@ -1,6 +1,4 @@
-import { useRecoilValue } from 'recoil';
 import useCategoryDataQuery from '../../../hooks/query/useCategoryDataQuery';
-import { categoryOptionsState } from '../../../states/initData';
 
 interface CategoryHocProps {
   WrappedComponent: React.ComponentType<any>;

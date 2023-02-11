@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { MainData } from '../../../hooks/query/useMainDataQuery';
 import BestItem from './BestItem';
 import Categories from './Categories';
