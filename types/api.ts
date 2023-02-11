@@ -25,3 +25,8 @@ export interface Notice {
   title: string;
   uuid: string;
 }
+
+export interface CategoryList {
+  uuid: string;
+  products: Product[];
+}

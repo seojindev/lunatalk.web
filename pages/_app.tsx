@@ -6,6 +6,7 @@ import Layout from '../components/common/Layout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { queryClient as CustormQueryClient } from '../lib/query/queryClient';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 function MyApp({ Component, pageProps }: any) {
   const [queryClient] = useState(() => CustormQueryClient);
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }: any) {
             <Component {...pageProps} />
           </Layout>
         </Hydrate>
+        <ReactQueryDevtools />
         <ToastContainer position="bottom-center" autoClose={5000} />
       </QueryClientProvider>
     </RecoilRoot>

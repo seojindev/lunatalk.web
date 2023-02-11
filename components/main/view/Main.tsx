@@ -5,7 +5,9 @@ import Categories from './Categories';
 import Customer from './Customer';
 import NewItem from './NewItem';
 
-function Main(props: MainData) {
+type MainProps = MainData;
+
+function Main(props: MainProps) {
   const { categories, bestItems, newItems, noticeItems } = props;
   return (
     <>

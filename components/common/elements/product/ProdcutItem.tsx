@@ -14,12 +14,16 @@ function ProductItem(props: ProductItemProps) {
     <div className="flex flex-col gap-2">
       <div>
         <Link href={`/product/${item.uuid}`}>
-          <Image
-            src={item.rep_image.url}
-            alt={item.name}
-            width={400}
-            height={400}
-          />
+          {item.rep_image.url && (
+            <div className="max-w-[250px] overflow-hidden aspect-[1/1] ">
+              <Image
+                src={item.rep_image.url}
+                alt={item.name}
+                width={400}
+                height={400}
+              />
+            </div>
+          )}
         </Link>
       </div>
       <div className="text-center">

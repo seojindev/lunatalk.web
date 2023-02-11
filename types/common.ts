@@ -4,15 +4,9 @@ export interface CodeItem {
 }
 
 export interface Codes {
-  code_name: any;
+  code_name: { [key: string]: string };
   code_group: {
-    '110': CodeItem[];
-    '120': CodeItem[];
-    '130': CodeItem[];
-    '210': CodeItem[];
-    '300': CodeItem[];
-    '400': CodeItem[];
-    '010': CodeItem[];
+    [key: string]: CodeItem[];
   };
 }
 export interface Categories {
@@ -21,7 +15,7 @@ export interface Categories {
 }
 
 export interface AppBase {
-  codes: Codes[];
+  codes: Codes;
   product_category: Categories[];
 }
 

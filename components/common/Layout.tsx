@@ -13,9 +13,11 @@ function Layout(props: Props) {
   const { data: initState } = useInitDataQuery();
   return (
     <div>
-      <Spinner />
       <Header initState={initState} />
-      <div className="max-w-[1200px] mx-auto tablet:px-2">{children}</div>
+      <div className="max-w-[1200px] py-16 mx-auto tablet:p-2">
+        <Spinner />
+        {children}
+      </div>
       <Footer />
     </div>
   );

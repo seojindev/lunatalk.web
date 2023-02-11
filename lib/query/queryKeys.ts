@@ -5,4 +5,5 @@ export const queryKeys = {
     newItems: 'newItems',
     noticeItems: 'noticeItems',
   },
+  category: 'category',
 };
