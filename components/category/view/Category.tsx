@@ -13,7 +13,7 @@ function Category(props: CategoryProps) {
   const { options, items, optionOnChange, selectedOption } = props;
 
   return (
-    <div className="flex flex-row flex-wrap gap-5">
+    <div className="flex flex-col flex-wrap gap-5">
       <CategorySelect
         options={options}
         onChange={optionOnChange}

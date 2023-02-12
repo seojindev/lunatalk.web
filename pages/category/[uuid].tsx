@@ -21,8 +21,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const categoryId: any = params?.uuid;
 
-  queryClient.prefetchQuery([queryKeys.category, categoryId, '6000010'], () =>
-    getCategoryListByOption(categoryId, '6000010'),
+  await queryClient.prefetchQuery(
+    [queryKeys.category, categoryId, '6000010'],
+    () => getCategoryListByOption(categoryId, '6000010'),
   );
   return {
     props: { dehydratedState: dehydrate(queryClient) },
