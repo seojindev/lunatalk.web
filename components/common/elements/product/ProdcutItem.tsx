@@ -11,22 +11,23 @@ function ProductItem(props: ProductItemProps) {
   const { item } = props;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 items-center">
       <div>
         <Link href={`/product/${item.uuid}`}>
           {item.rep_image.url && (
-            <div className="max-w-[250px] overflow-hidden aspect-[1/1] ">
+            <div className="max-w-[250px] overflow-hidden aspect-[1/1]">
               <Image
                 src={item.rep_image.url}
                 alt={item.name}
                 width={400}
                 height={400}
+                className="block"
               />
             </div>
           )}
         </Link>
       </div>
-      <div className="text-center">
+      <div className="text-center w-full">
         <h3 className="text-sm font-bold tablet:text-xs tablet:mb-1">
           {item.name}
         </h3>
