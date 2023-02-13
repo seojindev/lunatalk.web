@@ -30,3 +30,31 @@ export interface CategoryList {
   uuid: string;
   products: Product[];
 }
+
+interface Product {
+  uuid: string;
+  name: string;
+  originalPrice: string;
+  numberPrice: number;
+  price: string;
+  quantity: number;
+  reviews: any[];
+  option: {
+    color: {
+      id: number;
+      name: string;
+    }[];
+    wireless: {
+      id: number;
+      name: string;
+    }[];
+  };
+  image: {
+    rep: {
+      url: string[];
+    };
+    detail: {
+      url: string[];
+    };
+  };
+}
