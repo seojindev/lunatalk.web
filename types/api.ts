@@ -1,4 +1,4 @@
-import { Product } from './common';
+import { Product as commonProduct } from './common';
 
 export interface MainCategory {
   name: string;
@@ -8,12 +8,12 @@ export interface MainCategory {
 
 export interface BestItem {
   uuid: string;
-  product: Product;
+  product: commonProduct;
 }
 
 export interface NewItem {
   uuid: string;
-  product: Product;
+  product: commonProduct;
 }
 
 export interface Notice {
@@ -28,10 +28,10 @@ export interface Notice {
 
 export interface CategoryList {
   uuid: string;
-  products: Product[];
+  products: commonProduct[];
 }
 
-interface Product {
+export interface Product {
   uuid: string;
   name: string;
   originalPrice: string;
