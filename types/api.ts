@@ -34,7 +34,7 @@ export interface CategoryList {
 export interface Product {
   uuid: string;
   name: string;
-  originalPrice: {
+  original_price: {
     number: number;
     string: string;
   };

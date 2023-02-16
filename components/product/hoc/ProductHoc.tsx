@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import useProductDataQuery from '../../../hooks/query/useProductDataQuery';
