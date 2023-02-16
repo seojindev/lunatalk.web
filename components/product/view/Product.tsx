@@ -1,3 +1,4 @@
+import { Product } from '../../../types/api';
 import ProductDetailImage from './ProductDetailImage';
 import ProductInformation from './ProductInformation';
 import ProductOrderInformation from './ProductOrderInformation';
@@ -8,17 +9,19 @@ interface ProductProps {
   onClick: (value: string) => void;
   tabs: { value: string; name: string }[];
   selectedTab: string;
+  product: Product;
 }
 
 function Product(props: ProductProps) {
-  const { onClick, tabs, selectedTab } = props;
+  const { onClick, tabs, selectedTab, product } = props;
+  console.log(product);
   return (
     <div className="flex flex-col gap-8">
-      <ProductInformation />
+      <ProductInformation item={product} />
       <ProductTabs tabs={tabs} onClick={onClick} selectedTab={selectedTab} />
       {selectedTab === 'order' && <ProductOrderInformation />}
       {selectedTab === 'product' && (
-        <ProductDetailImage image="https://media.lunatalk.co.kr/storage/products/detail/6cfbd8f340e67cf8791d7a638b91df80f4c2ef7e/4CdbQmT6yekK9MMB9JbTmkrwbD8dxuKTLAHaa1P9.jpg" />
+        <ProductDetailImage image={product.image.detail} />
       )}
       {selectedTab === 'review' && <ProductReview />}
     </div>

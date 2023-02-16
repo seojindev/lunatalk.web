@@ -1,4 +1,7 @@
+import { log } from 'console';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
+import useProductDataQuery from '../../../hooks/query/useProductDataQuery';
 
 interface ProductHocProps {
   WrappedComponent: React.ComponentType<any>;
@@ -6,8 +9,13 @@ interface ProductHocProps {
 
 function ProductHoc(props: ProductHocProps) {
   const { WrappedComponent } = props;
+  const router = useRouter();
 
-  const [selectedTab, setSelectTab] = useState<string>('order');
+  const { uuid } = router.query;
+
+  const { data: product } = useProductDataQuery(uuid as string);
+
+  const [selectedTab, setSelectTab] = useState<string>('product');
 
   const onChangeTab = (tabName: string) => {
     setSelectTab(tabName);
@@ -23,6 +31,7 @@ function ProductHoc(props: ProductHocProps) {
     selectedTab,
     onClick: onChangeTab,
     tabs,
+    product,
   };
 
   return <WrappedComponent {...productData} />;

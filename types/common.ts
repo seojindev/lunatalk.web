@@ -49,3 +49,9 @@ export interface ProductList {
   name: string;
   items: Product[];
 }
+
+export interface Image {
+  id: number;
+  url: string;
+  file_name: string;
+}

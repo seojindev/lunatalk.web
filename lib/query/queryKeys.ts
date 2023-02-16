@@ -6,4 +6,5 @@ export const queryKeys = {
     noticeItems: 'noticeItems',
   },
   category: 'category',
+  product: 'product',
 };

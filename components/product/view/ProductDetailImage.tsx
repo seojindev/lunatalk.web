@@ -1,14 +1,24 @@
+import _ from 'lodash';
 import Image from 'next/image';
+import { Image as DetailImage } from '../../../types/common';
 
 interface ProductDetailImageProps {
-  image: string;
+  image: DetailImage[];
 }
 
 function ProductDetailImage(props: ProductDetailImageProps) {
   const { image } = props;
   return (
     <div className="px-2 w-full">
-      <Image src={image} alt="상품" width={1170} height={30000} />
+      {_.map(image, (item) => (
+        <Image
+          key={item.id}
+          src={item.url}
+          alt="상품"
+          width={1170}
+          height={30000}
+        />
+      ))}
     </div>
   );
 }

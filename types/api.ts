@@ -1,4 +1,4 @@
-import { Product as commonProduct } from './common';
+import { Image, Product as commonProduct } from './common';
 
 export interface MainCategory {
   name: string;
@@ -34,12 +34,17 @@ export interface CategoryList {
 export interface Product {
   uuid: string;
   name: string;
-  originalPrice: string;
-  numberPrice: number;
-  price: string;
+  originalPrice: {
+    number: number;
+    string: string;
+  };
+  price: {
+    number: number;
+    string: string;
+  };
   quantity: number;
   reviews: any[];
-  option: {
+  options: {
     color: {
       id: number;
       name: string;
@@ -50,11 +55,7 @@ export interface Product {
     }[];
   };
   image: {
-    rep: {
-      url: string[];
-    };
-    detail: {
-      url: string[];
-    };
+    rep: Image[];
+    detail: Image[];
   };
 }
