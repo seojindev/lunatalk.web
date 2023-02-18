@@ -15,6 +15,7 @@
     "classnames": "^2.3.2",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "framer-motion": "^9.0.4",
     "lodash": "^4.17.21",
     "next": "^13.1.6",
     "prettier": "^2.8.4",

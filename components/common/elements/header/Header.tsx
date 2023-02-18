@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { BsBag, BsFillPersonFill, BsSearch } from 'react-icons/bs';
 import { AppBase } from '../../../../types/common';
+import UserMenu from './UserMenu';
 
 interface Props {
   initState: AppBase | undefined;
@@ -9,6 +12,14 @@ interface Props {
 
 function Header(props: Props) {
   const { initState } = props;
+  const router = useRouter();
+  const [visible, setVisible] = useState(false);
+
+  const onOpen = () => setVisible(true);
+  const onClose = (e?: Event) => {
+    e?.preventDefault();
+    setVisible(false);
+  };
   return (
     <header className="max-w-[1250px] mx-auto py-5 items-center px-2">
       <div className="justify-between grid grid-cols-3 grid-areas-horizontal tablet:grid-areas-vertical">
@@ -37,13 +48,20 @@ function Header(props: Props) {
           ))}
         </nav>
         <div className="flex gap-5 items-center justify-end grid-in-[side]">
-          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1]">
+          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1] cursor-pointer">
             <BsSearch />
           </span>
-          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1]">
+          <span
+            className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1] cursor-pointer"
+            onClick={onOpen}
+          >
             <BsFillPersonFill />
           </span>
-          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1]">
+          <UserMenu visible={visible} onClose={onClose} />
+          <span
+            className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1] cursor-pointer"
+            onClick={() => router.push('/bag')}
+          >
             <BsBag />
           </span>
         </div>
