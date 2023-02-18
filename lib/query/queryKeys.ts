@@ -7,4 +7,5 @@ export const queryKeys = {
   },
   category: 'category',
   product: 'product',
+  recommend: 'recommend',
 };

@@ -12,7 +12,8 @@ function ProductHoc(props: ProductHocProps) {
 
   const { uuid } = router.query;
 
-  const { data: product } = useProductDataQuery(uuid as string);
+  const { productData: product, recommendData: recommend } =
+    useProductDataQuery(uuid as string);
 
   const [selectedTab, setSelectTab] = useState<string>('product');
 
@@ -31,6 +32,7 @@ function ProductHoc(props: ProductHocProps) {
     onClick: onChangeTab,
     tabs,
     product,
+    recommend,
   };
 
   return <WrappedComponent {...productData} />;
