@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { queryKeys } from '../lib/query/queryKeys';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import {
   getMainBestItemData,
@@ -7,7 +8,6 @@ import {
   getMainProductCategoryData,
 } from '../lib/api/main';
 import dynamic from 'next/dynamic';
-import { queryKeys } from '../lib/query/queryKeys';
 
 const MainComponent = dynamic<any>(
   () => import('../components/main/MainComponent'),

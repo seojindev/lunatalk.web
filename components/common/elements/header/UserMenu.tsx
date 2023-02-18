@@ -30,13 +30,13 @@ function UserMenu({ visible, onClose }: Props) {
         >
           <div
             className="p-3 cursor-pointer hover:transition-all hover:ease-in hover:duration-100 hover:bg-slate-100 mobile:text-xs"
-            onClick={() => router.push('/login')}
+            onClick={() => router.push('/auth/login')}
           >
             로그인
           </div>
           <div
             className="p-3 cursor-pointer hover:transition-all hover:ease-in hover:duration-100 hover:bg-slate-100 mobile:text-xs"
-            onClick={() => router.push('/register')}
+            onClick={() => router.push('/auth/register')}
           >
             회원가입
           </div>
