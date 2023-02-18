@@ -80,12 +80,22 @@ function ProductInformation(props: ProductInformationProps) {
           <p>17450원</p>
         </div>
         <div className="grid grid-cols-2 gap-3 tablet:text-sm">
-          <button className="bg-[#a749ff] text-white py-3 tablet:py-2">
-            구매하기
-          </button>
-          <button className="bg-[#a749ff] text-white py-3 tablet:py-2">
-            장바구니
-          </button>
+          <div className="">
+            <button
+              type="button"
+              className="bg-[#a749ff] text-white py-3 tablet:py-2 block w-full"
+            >
+              구매하기
+            </button>
+          </div>
+          <div>
+            <button
+              type="button"
+              className="bg-[#a749ff] text-white py-3 tablet:py-2 block w-full"
+            >
+              장바구니
+            </button>
+          </div>
         </div>
       </div>
     </div>
