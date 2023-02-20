@@ -1,16 +1,18 @@
-import { Product } from '../../types/api';
+import { Product, ResponseInterface } from '../../types/api';
 import { Product as CommonProduct } from '../../types/common';
 import client from '../axios';
 
-export function getProduct(uuid: string) {
-  return client<Product>({
+export async function getProduct(uuid: string) {
+  const data = await client<ResponseInterface<Product>>({
     method: 'GET',
     url: `/api/front/v1/product/${uuid}/detail`,
   });
+  return data.result;
 }
-export function getProductRecommend(uuid: string) {
-  return client<CommonProduct[]>({
+export async function getProductRecommend(uuid: string) {
+  const data = await client<ResponseInterface<CommonProduct[]>>({
     method: 'GET',
     url: `/api/front/v1/product/${uuid}/recommend`,
   });
+  return data.result;
 }

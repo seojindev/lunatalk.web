@@ -1,4 +1,12 @@
 import { Image, Product as commonProduct } from './common';
+export interface Error {
+  error_message?: string;
+}
+
+export interface ResponseInterface<T> extends Error {
+  message: string;
+  result: T;
+}
 
 export interface MainCategory {
   name: string;
@@ -58,4 +66,9 @@ export interface Product {
     rep: Image[];
     detail: Image[];
   };
+}
+
+export interface Login {
+  access_token: string;
+  refresh_token: string;
 }

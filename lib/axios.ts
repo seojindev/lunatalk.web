@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { toast } from 'react-toastify';
+import { Error } from '../types/api';
 
 const axiosDefualtHeader: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -14,7 +16,7 @@ const axiosDefualtHeader: AxiosRequestConfig = {
 
 const instance = axios.create(axiosDefualtHeader);
 
-export default async function client<T>({
+export default async function client<T extends Error>({
   url,
   method,
   body,
@@ -26,14 +28,18 @@ export default async function client<T>({
   headers?: { [key: string]: any };
 }): Promise<T> {
   try {
-    const { data } = await instance.request({
+    const { data, status } = await instance.request<T>({
       url,
       method,
       data: body,
       headers,
     });
 
-    return data.result ? data.result : [];
+    if (status !== 200) {
+      toast.warning(data.error_message);
+    }
+
+    return data;
   } catch (e) {
     console.log(e);
     throw e;
