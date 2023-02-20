@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
 import { Error } from '../types/api';
+import { getStoredAccessToken } from './localStorage';
 
 const axiosDefualtHeader: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -16,6 +17,21 @@ const axiosDefualtHeader: AxiosRequestConfig = {
 
 const instance = axios.create(axiosDefualtHeader);
 
+// const accessToken = getStoredAccessToken();
+
+// instance.defaults.headers['Authorization'] = 'Bearer ' + accessToken;
+
+const attachTokenToRequest = (
+  request: AxiosRequestConfig,
+  accessToken: any,
+) => {
+  console.log(request);
+
+  if (request.headers) {
+    request.headers['Authorization'] = 'Bearer ' + accessToken;
+  }
+};
+
 export default async function client<T extends Error>({
   url,
   method,
@@ -28,20 +44,24 @@ export default async function client<T extends Error>({
   headers?: { [key: string]: any };
 }): Promise<T> {
   try {
-    const { data, status } = await instance.request<T>({
+    const options: AxiosRequestConfig = {
       url,
       method,
       data: body,
       headers,
-    });
+    };
+    const accessToken = getStoredAccessToken();
+    console.log(accessToken);
 
-    if (status !== 200) {
-      toast.warning(data.error_message);
-    }
+    attachTokenToRequest(options, accessToken);
+    console.log(options);
+
+    const { data } = await instance.request<T>(options);
 
     return data;
-  } catch (e) {
+  } catch (e: any) {
+    toast.warning(e.response.data.error_message);
     console.log(e);
-    throw e;
+    return e;
   }
 }

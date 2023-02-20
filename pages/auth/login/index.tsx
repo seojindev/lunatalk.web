@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { login } from '../../../lib/api/auth';
+import { setStoredUser } from '../../../lib/localStorage';
 
 interface LoginForm {
   loginId: string;
@@ -11,17 +14,26 @@ function Login() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<LoginForm>({
     mode: 'onSubmit',
     defaultValues: { loginId: '', password: '' },
   });
 
+  const router = useRouter();
+
+  const onSubmit = async (loginData: LoginForm) => {
+    const data = await login(loginData.loginId, loginData.password);
+    reset();
+    if (data) {
+      setStoredUser(data);
+      router.push('/');
+    }
+  };
+
   return (
     <div className="max-w-[700px] mx-auto p-16 border-[1px] border-[#ebebeb] rounded text-center flex flex-col gap-5 mobile:p-0 mobile:border-0 mobile:py-24">
-      <form
-        className="flex flex-col gap-3"
-        onSubmit={handleSubmit((data) => console.log(data))}
-      >
+      <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <input
           className="border-[1px] border-[#ebebeb] p-4 mobile:text-sm mobile:p-3"
           type="text"
