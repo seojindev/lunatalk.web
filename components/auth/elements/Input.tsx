@@ -1,5 +1,8 @@
+import { UseFormRegister } from 'react-hook-form';
+import { LoginForm } from '../../../hooks/auth/useAuth';
+
 interface Props {
-  register: any; // TODO: register type 확인
+  register: UseFormRegister<LoginForm>;
   error: string | undefined;
   placeHolder: string;
   type: string;

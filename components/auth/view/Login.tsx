@@ -1,4 +1,4 @@
-import { FieldErrors } from 'react-hook-form';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { LoginForm } from '../../../hooks/auth/useAuth';
 import AuthForm from '../elements/AuthForm';
 import Button from '../elements/Button';
@@ -6,7 +6,7 @@ import Input from '../elements/Input';
 import SubMenu from './SubMenu';
 
 interface Props {
-  register: any;
+  register: UseFormRegister<LoginForm>;
   errors: FieldErrors<LoginForm>;
   isLoading: boolean;
   handleSubmit: any;
