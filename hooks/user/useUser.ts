@@ -1,5 +1,6 @@
 import { deleteCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 function useUser() {
   const accessToken = getCookie('accessToken');
@@ -11,6 +12,7 @@ function useUser() {
   const logout = () => {
     deleteCookie('accessToken');
     deleteCookie('refreshToken');
+    toast.success('로그아웃 되었습니다.');
     router.push('/');
   };
 
