@@ -6,7 +6,7 @@ import Input from '../elements/Input';
 import SubMenu from './SubMenu';
 
 interface Props {
-  register: UseFormRegister<LoginForm>;
+  register: any;
   errors: FieldErrors<LoginForm>;
   isLoading: boolean;
   handleSubmit: any;
