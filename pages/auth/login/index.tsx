@@ -1,34 +1,17 @@
+import { useMutation } from '@tanstack/react-query';
+import cn from 'classnames';
+import { getCookie } from 'cookies-next';
+import { GetServerSideProps } from 'next';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
-import { login } from '../../../lib/api/auth';
-import { setStoredUser } from '../../../lib/localStorage';
 
-interface LoginForm {
-  loginId: string;
-  password: string;
-}
+import { MoonLoader } from 'react-spinners';
+import useAuth, { LoginForm } from '../../../hooks/auth/useAuth';
 
 function Login() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<LoginForm>({
-    mode: 'onSubmit',
-    defaultValues: { loginId: '', password: '' },
-  });
-
-  const router = useRouter();
+  const { loginMutate, handleSubmit, register, errors, isLoading } = useAuth();
 
   const onSubmit = async (loginData: LoginForm) => {
-    const data = await login(loginData.loginId, loginData.password);
-    reset();
-    if (data) {
-      setStoredUser(data);
-      router.push('/');
-    }
+    loginMutate(loginData);
   };
 
   return (
@@ -62,9 +45,14 @@ function Login() {
         </div>
         <button
           type="submit"
-          className="bg-[#f2f2f2] text-[#333] hover:bg-[#a749ff] w-full py-4 hover:text-white transition-all ease-in-out duration-300 mobile:text-sm mobile:p-3"
+          className={cn(
+            ' text-[#333] hover:bg-[#a749ff] w-full py-4 hover:text-white transition-all ease-in-out duration-300 mobile:text-sm mobile:p-3 flex justify-center',
+            { 'bg-[#a749ff]': isLoading },
+            { 'bg-[#f2f2f2]': !isLoading },
+          )}
+          disabled={isLoading}
         >
-          로그인
+          {isLoading ? <MoonLoader color="#000" size={18} /> : '로그인'}
         </button>
       </form>
     </div>
@@ -72,3 +60,20 @@ function Login() {
 }
 
 export default Login;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const accessToken = getCookie('accessToken', context);
+
+  if (accessToken) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

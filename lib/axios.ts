@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
 import { Error } from '../types/api';
-import { getStoredAccessToken } from './localStorage';
 
 const axiosDefualtHeader: AxiosRequestConfig = {
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -17,19 +16,8 @@ const axiosDefualtHeader: AxiosRequestConfig = {
 
 const instance = axios.create(axiosDefualtHeader);
 
-// const accessToken = getStoredAccessToken();
-
-// instance.defaults.headers['Authorization'] = 'Bearer ' + accessToken;
-
-const attachTokenToRequest = (
-  request: AxiosRequestConfig,
-  accessToken: any,
-) => {
-  console.log(request);
-
-  if (request.headers) {
-    request.headers['Authorization'] = 'Bearer ' + accessToken;
-  }
+export const attachTokenToRequest = (accessToken: string) => {
+  instance.defaults.headers['Authorization'] = 'Bearer ' + accessToken;
 };
 
 export default async function client<T extends Error>({
@@ -50,11 +38,6 @@ export default async function client<T extends Error>({
       data: body,
       headers,
     };
-    const accessToken = getStoredAccessToken();
-    console.log(accessToken);
-
-    attachTokenToRequest(options, accessToken);
-    console.log(options);
 
     const { data } = await instance.request<T>(options);
 
