@@ -20,54 +20,41 @@ export interface MainData {
 }
 
 function useMainDataQuery() {
-  const [mainData, setMainData] = useState<MainData>({
-    categories: [],
-    newItems: [],
-    bestItems: [],
-    noticeItems: [],
-  });
-  useQueries({
+  const [
+    { data: categories },
+    { data: bestItems },
+    { data: newItems },
+    { data: noticeItems },
+  ] = useQueries({
     queries: [
       {
         queryKey: [queryKeys.main.categories],
         queryFn: getMainProductCategoryData,
-        onSuccess: (data: MainCategory[]) => {
-          const categories = _.map(data, (item) => ({
-            name: item.name,
-            uuid: item.uuid,
-            url: item.image.url || '',
-          }));
-          setMainData((prev) => ({ ...prev, categories }));
-        },
       },
       {
         queryKey: [queryKeys.main.bestItems],
         queryFn: getMainBestItemData,
-        onSuccess: (data: BestItem[]) => {
-          const bestItems = _.map(data, (item) => item.product);
-
-          setMainData((prev) => ({ ...prev, bestItems }));
-        },
       },
       {
         queryKey: [queryKeys.main.newItems],
         queryFn: getMainNewItemData,
-        onSuccess: (data: NewItem[]) => {
-          const newItems = _.map(data, (item) => item.product);
-
-          setMainData((prev) => ({ ...prev, newItems }));
-        },
       },
       {
         queryKey: [queryKeys.main.noticeItems],
         queryFn: getMainNoticeData,
-        onSuccess: (data: Notice[]) => {
-          setMainData((prev) => ({ ...prev, noticeItems: data }));
-        },
       },
     ],
   });
 
-  return mainData;
+  return {
+    categories: _.map(categories, (item) => ({
+      name: item.name,
+      uuid: item.uuid,
+      url: item.image.url || '',
+    })),
+    bestItems: _.map(bestItems, (item) => item.product),
+    newItems: _.map(newItems, (item) => item.product),
+    noticeItems,
+  };
 }
 export default useMainDataQuery;
