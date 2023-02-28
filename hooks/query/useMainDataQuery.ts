@@ -16,10 +16,10 @@ export interface MainData {
   categories: Category[];
   newItems: Product[];
   bestItems: Product[];
-  noticeItems: Notice[];
+  noticeItems: Notice[] | undefined;
 }
 
-function useMainDataQuery() {
+function useMainDataQuery(): MainData {
   const [
     { data: categories },
     { data: bestItems },
