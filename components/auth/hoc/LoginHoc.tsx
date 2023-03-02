@@ -6,16 +6,13 @@ interface LoginHocProps {
 function LoginHoc(props: LoginHocProps) {
   const { WrappedComponent } = props;
 
-  const { loginMutate, handleSubmit, register, errors, isLoading } = useAuth();
+  const { handleSubmit, register, errors, isLoading } = useAuth();
 
-  const onSubmit = async (loginData: LoginForm) => {
-    loginMutate(loginData);
-  };
   const loginData = {
     register,
     errors,
     isLoading,
-    handleSubmit: handleSubmit(onSubmit),
+    handleSubmit,
   };
   return <WrappedComponent {...loginData} />;
 }

@@ -33,7 +33,16 @@ function useAuth() {
     },
   );
 
-  return { register, handleSubmit, errors, loginMutate, isLoading };
+  const onSubmit = async (loginData: LoginForm) => {
+    loginMutate(loginData);
+  };
+
+  return {
+    register,
+    handleSubmit: handleSubmit(onSubmit),
+    errors,
+    isLoading,
+  };
 }
 
 export default useAuth;
