@@ -1,6 +1,5 @@
 import { useQueries } from '@tanstack/react-query';
 import _ from 'lodash';
-import { useState } from 'react';
 import {
   getMainBestItemData,
   getMainNewItemData,
@@ -8,7 +7,7 @@ import {
   getMainProductCategoryData,
 } from '../../lib/api/main';
 import { queryKeys } from '../../lib/query/queryKeys';
-import { BestItem, MainCategory, NewItem, Notice } from '../../types/api';
+import { Notice } from '../../types/api';
 import { Product } from '../../types/common';
 import { Category } from '../../types/main';
 
