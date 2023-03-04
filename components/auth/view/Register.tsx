@@ -21,6 +21,9 @@ interface Props {
   authOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   authCodeSend: (phoneNumber: string) => void;
   authCodeConfirm: (authIndex: number | null, authCode: string) => void;
+  signUpLoading: boolean;
+  authConfirmLoading: boolean;
+  phoneAuthLoading: boolean;
 }
 
 function Register(props: Props) {
@@ -35,6 +38,9 @@ function Register(props: Props) {
     authOnChange,
     authCodeSend,
     authCodeConfirm,
+    signUpLoading,
+    authConfirmLoading,
+    phoneAuthLoading,
   } = props;
   return (
     <AuthForm handleSubmit={onSubmit}>
@@ -112,16 +118,16 @@ function Register(props: Props) {
           onChange={authOnChange}
           disabled={!!auth.authIndex}
         />
-        {!auth.isComplete && (
-          <Button
-            text="전송"
-            type="button"
-            buttonType="not-full"
-            isDisabled={auth.phoneNumber === '' || !!auth.authIndex}
-            isLoading={false}
-            onClick={() => authCodeSend(auth.phoneNumber)}
-          />
-        )}
+        <Button
+          text={auth.isComplete ? '인증완료' : '전송'}
+          type="button"
+          buttonType="not-full"
+          isDisabled={
+            auth.phoneNumber === '' || !!auth.authIndex || auth.isComplete
+          }
+          isLoading={phoneAuthLoading}
+          onClick={() => authCodeSend(auth.phoneNumber)}
+        />
       </div>
       {auth.authIndex && !auth.isComplete ? (
         <div className="flex flex-row gap-3">
@@ -137,7 +143,7 @@ function Register(props: Props) {
             type="button"
             buttonType="not-full"
             isDisabled={auth.authCode === '' || !auth.authIndex}
-            isLoading={false}
+            isLoading={authConfirmLoading}
             onClick={() => authCodeConfirm(auth.authIndex, auth.authCode)}
           />
         </div>
@@ -154,7 +160,11 @@ function Register(props: Props) {
         </label>
       </div>
 
-      <Button text="회원가입" isLoading={false} isDisabled={false} />
+      <Button
+        text="회원가입"
+        isLoading={signUpLoading}
+        isDisabled={signUpLoading}
+      />
     </AuthForm>
   );
 }

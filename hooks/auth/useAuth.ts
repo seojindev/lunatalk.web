@@ -33,7 +33,7 @@ function useAuth() {
     },
   );
 
-  const onSubmit = async (loginData: LoginForm) => {
+  const onSubmit = (loginData: LoginForm) => {
     loginMutate(loginData);
   };
 

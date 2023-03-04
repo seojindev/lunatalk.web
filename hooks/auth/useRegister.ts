@@ -1,3 +1,5 @@
+import { RegisterRequest } from './../../types/api';
+import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
@@ -60,6 +62,45 @@ function useRegister() {
   });
   const router = useRouter();
 
+  const { mutate: signUpMutate, isLoading: signUpLoading } = useMutation(
+    (registerData: RegisterRequest) => signUp(registerData),
+    {
+      onSuccess: (data) => {
+        if (data?.id) {
+          reset();
+          toast.success('회원가입 되었습니다.');
+          router.push('/auth/login');
+        }
+      },
+    },
+  );
+
+  const { mutate: authConfirm, isLoading: authConfirmLoading } = useMutation(
+    ({ authIndex, authCode }: { authIndex: number; authCode: string }) =>
+      phoneAuthConfirm(authIndex, authCode),
+    {
+      onSuccess: (data) => {
+        if (data?.auth_index) {
+          setAuth({ ...auth, isComplete: true });
+          setValue('authIndex', data.auth_index);
+          toast.success('인증 완료 되었습니다.');
+        }
+      },
+    },
+  );
+
+  const { mutate: phoneAuthMutate, isLoading: phoneAuthLoading } = useMutation(
+    (phoneNumber: string) => phoneAuth(phoneNumber),
+    {
+      onSuccess: (data) => {
+        if (data?.auth_index) {
+          setAuth({ ...auth, authIndex: data.auth_index });
+          toast.success('인증번호가 전송되었습니다.');
+        }
+      },
+    },
+  );
+
   const authOnChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setAuth({ ...auth, [e.target.name]: e.target.value });
@@ -76,40 +117,24 @@ function useRegister() {
   const emailOptions = useRecoilValue(emailAddressState);
 
   const authCodeSend = useCallback(
-    async (phoneNumber: string) => {
-      const data = await phoneAuth(phoneNumber);
-
-      if (data?.auth_index) {
-        setAuth({ ...auth, authIndex: data.auth_index });
-        toast.success('인증번호가 전송되었습니다.');
-      }
+    (phoneNumber: string) => {
+      phoneAuthMutate(phoneNumber);
     },
     [auth],
   );
 
   const authCodeConfirm = useCallback(
-    async (authIndex: number | null, authCode: string) => {
+    (authIndex: number | null, authCode: string) => {
       if (!authIndex) {
         return toast.warning('인증을 다시 시도해 주세요.');
       }
-      const data = await phoneAuthConfirm(authIndex, authCode);
-
-      if (data?.auth_index) {
-        setAuth({ ...auth, isComplete: true });
-        setValue('authIndex', data.auth_index);
-        toast.success('인증 완료 되었습니다.');
-      }
+      authConfirm({ authIndex, authCode });
     },
     [auth],
   );
 
-  const onSubmit = async (registerData: any) => {
-    const data = await signUp(registerData);
-    if (data?.id) {
-      reset();
-      toast.success('회원가입 되었습니다.');
-      router.push('/auth/login');
-    }
+  const onSubmit = (registerData: any) => {
+    signUpMutate(registerData);
   };
 
   return {
@@ -123,6 +148,9 @@ function useRegister() {
     register,
     errors,
     values: getValues(),
+    signUpLoading,
+    authConfirmLoading,
+    phoneAuthLoading,
   };
 }
 
