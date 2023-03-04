@@ -25,7 +25,7 @@ function Button({
         ' text-[#333] hover:bg-[#a749ff] w-full py-4 hover:text-white transition-all ease-in-out duration-300 mobile:text-sm mobile:p-3 flex justify-center',
         { 'bg-[#f2f2f2]': isDisabled },
         { 'bg-[#a749ff] text-white': !isDisabled },
-        { 'w-[30%] min-w-[100px]': buttonType === 'not-full' },
+        { 'w-[100px]': buttonType === 'not-full' },
       )}
       disabled={isDisabled || isLoading}
       onClick={onClick}
