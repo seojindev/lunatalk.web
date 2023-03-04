@@ -22,10 +22,11 @@ function Button({
     <button
       type={type ?? 'submit'}
       className={cn(
-        ' text-[#333] hover:bg-[#a749ff] w-full py-4 hover:text-white transition-all ease-in-out duration-300 mobile:text-sm mobile:p-3 flex justify-center',
+        ' text-[#333] hover:bg-[#a749ff] py-4 hover:text-white transition-all ease-in-out duration-300 mobile:text-sm mobile:p-3 flex justify-center',
         { 'bg-[#f2f2f2]': isDisabled },
         { 'bg-[#a749ff] text-white': !isDisabled },
         { 'w-[100px]': buttonType === 'not-full' },
+        { 'w-full': buttonType === 'full' },
       )}
       disabled={isDisabled || isLoading}
       onClick={onClick}
