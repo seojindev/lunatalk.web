@@ -24,3 +24,21 @@ export const categoryOptionsState = selector({
     }));
   },
 });
+
+export const emailAddressState = selector({
+  key: 'EamilAddress',
+  get: ({ get }) => {
+    const appInitData = get(appInitState);
+    if (!appInitData) return [];
+
+    const {
+      codes: { code_group: codeGroup },
+    } = appInitData;
+
+    const options = codeGroup[400] || [];
+    return _.map(options, (item) => ({
+      value: item.code_id,
+      label: item.code_name,
+    }));
+  },
+});

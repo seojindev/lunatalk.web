@@ -72,3 +72,36 @@ export interface Login {
   access_token: string;
   refresh_token: string;
 }
+
+export interface PhoneAuth {
+  uuid: string;
+  phone_number: string | null;
+  auth_index: number;
+}
+
+export interface PhoneAuthConfirm {
+  phone_number: string | null;
+  auth_index: number;
+}
+
+export interface RegisterRequest {
+  authIndex: number;
+  userId: string;
+  userPassword: string;
+  userPasswordConfirm: string;
+  userName: string;
+  userEmail: string;
+  userEmailAddress: string;
+  userSelectEmail: boolean;
+  userSelectMessage: boolean;
+}
+
+export interface Register {
+  id: number;
+  uuid: string;
+  login_id: string;
+  name: string;
+  type: string;
+  level: string;
+  status: string;
+}

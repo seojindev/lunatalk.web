@@ -39,7 +39,11 @@ export default async function client<T extends Error>({
       headers,
     };
 
-    const { data } = await instance.request<T>(options);
+    const { data, status } = await instance.request<T>(options);
+
+    if (status !== 200) {
+      toast.warning(data.error_message);
+    }
 
     return data;
   } catch (e: any) {

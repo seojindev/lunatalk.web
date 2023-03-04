@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Notice } from '../../../types/api';
 
 interface CustomerProps {
-  items: Notice[];
+  items: Notice[] | undefined;
 }
 
 function Customer(props: CustomerProps) {

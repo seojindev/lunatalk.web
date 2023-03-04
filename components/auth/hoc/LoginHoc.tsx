@@ -1,4 +1,4 @@
-import useAuth, { LoginForm } from '../../../hooks/auth/useAuth';
+import useAuth from '../../../hooks/auth/useAuth';
 
 interface LoginHocProps {
   WrappedComponent: React.ComponentType<any>;
