@@ -60,7 +60,7 @@ function Header(props: Props) {
           <UserMenu visible={visible} onClose={onClose} />
           <span
             className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1] cursor-pointer"
-            onClick={() => router.push('/bag')}
+            onClick={() => router.push('/cart')}
           >
             <BsBag />
           </span>
