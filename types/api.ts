@@ -105,3 +105,16 @@ export interface Register {
   level: string;
   status: string;
 }
+
+export interface NoticeDetail {
+  category: {
+    code_id: number;
+    code_name: string;
+  };
+  content: string;
+  created_at: { type1: string; type2: string };
+  id: number;
+  image: any[];
+  title: string;
+  uuid: string;
+}
