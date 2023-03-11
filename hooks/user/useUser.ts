@@ -3,9 +3,11 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
 function useUser() {
-  const accessToken = getCookie('accessToken');
+  const accessTokenCookie = getCookie('accessToken');
   const refreshToken = getCookie('refreshToken');
   const router = useRouter();
+
+  const accessToken: any = accessTokenCookie || undefined;
 
   const user = !!accessToken;
 

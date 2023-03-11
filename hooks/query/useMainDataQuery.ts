@@ -10,6 +10,7 @@ import { queryKeys } from '../../lib/query/queryKeys';
 import { Notice } from '../../types/api';
 import { Product } from '../../types/common';
 import { Category } from '../../types/main';
+import useUser from '../user/useUser';
 
 export interface MainData {
   categories: Category[];
@@ -19,6 +20,7 @@ export interface MainData {
 }
 
 function useMainDataQuery(): MainData {
+  const { accessToken } = useUser();
   const [
     { data: categories },
     { data: bestItems },
@@ -28,19 +30,19 @@ function useMainDataQuery(): MainData {
     queries: [
       {
         queryKey: [queryKeys.main.categories],
-        queryFn: getMainProductCategoryData,
+        queryFn: () => getMainProductCategoryData(accessToken),
       },
       {
         queryKey: [queryKeys.main.bestItems],
-        queryFn: getMainBestItemData,
+        queryFn: () => getMainBestItemData(accessToken),
       },
       {
         queryKey: [queryKeys.main.newItems],
-        queryFn: getMainNewItemData,
+        queryFn: () => getMainNewItemData(accessToken),
       },
       {
         queryKey: [queryKeys.main.noticeItems],
-        queryFn: getMainNoticeData,
+        queryFn: () => getMainNoticeData(accessToken),
       },
     ],
   });

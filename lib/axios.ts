@@ -16,8 +16,17 @@ const axiosDefualtHeader: AxiosRequestConfig = {
 
 const instance = axios.create(axiosDefualtHeader);
 
-export const attachTokenToRequest = (accessToken: string) => {
-  instance.defaults.headers['Authorization'] = 'Bearer ' + accessToken;
+export const accessTokenAdd = (
+  headers?: { [key: string]: any },
+  accessToken?: string,
+) => {
+  if (!accessToken) {
+    return headers;
+  }
+  return {
+    ...headers,
+    Authorization: `Bearer ${accessToken}`,
+  };
 };
 
 export default async function client<T extends Error>({
