@@ -1,4 +1,4 @@
-import NoticeHoc from './hoc/noticeHoc';
+import NoticeHoc from './hoc/NoticeHoc';
 import Notice from './view/Notice';
 
 function NoticeComponent() {

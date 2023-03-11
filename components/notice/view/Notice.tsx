@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { NoticeData } from '../hoc/noticeHoc';
+import { NoticeData } from '../hoc/NoticeHoc';
 
 type NoticeProps = NoticeData;
 
