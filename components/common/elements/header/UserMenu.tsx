@@ -16,7 +16,7 @@ function UserMenu({ visible, onClose }: Props) {
     onClose(e);
   });
 
-  const { user, logout } = useUser();
+  const { isLogin, logout } = useUser();
   return (
     <AnimatePresence>
       {visible && (
@@ -31,7 +31,7 @@ function UserMenu({ visible, onClose }: Props) {
           className="absolute top-16 bg-white w-[200px] border-gray-300 border-[1px] shadow-md rounded text-sm mobile:w-[150px]"
           ref={ref}
         >
-          {user ? (
+          {isLogin ? (
             <>
               <div
                 className="p-3 cursor-pointer hover:transition-all hover:ease-in hover:duration-100 hover:bg-slate-100 mobile:text-xs"

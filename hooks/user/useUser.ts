@@ -9,7 +9,7 @@ function useUser() {
 
   const accessToken: any = accessTokenCookie || undefined;
 
-  const user = !!accessToken;
+  const isLogin = !!accessToken;
 
   const logout = () => {
     deleteCookie('accessToken');
@@ -18,7 +18,7 @@ function useUser() {
     router.push('/');
   };
 
-  return { user, accessToken, refreshToken, logout };
+  return { isLogin, accessToken, refreshToken, logout };
 }
 
 export default useUser;

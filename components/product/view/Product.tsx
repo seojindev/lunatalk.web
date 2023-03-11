@@ -13,15 +13,38 @@ interface ProductProps {
   selectedTab: string;
   product: Product;
   recommend: CommonProduct[];
+  onHandleCount: (type: string) => void;
+  onHandleCountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  purchaseCount: number;
+  onPurchase: () => void;
+  onAddCart: () => void;
 }
 
 function Product(props: ProductProps) {
-  const { onClick, tabs, selectedTab, product, recommend } = props;
+  const {
+    onClick,
+    tabs,
+    selectedTab,
+    product,
+    recommend,
+    onHandleCount,
+    onHandleCountChange,
+    purchaseCount,
+    onPurchase,
+    onAddCart,
+  } = props;
 
   return (
     product && (
       <div className="flex flex-col gap-8">
-        <ProductInformation item={product} />
+        <ProductInformation
+          item={product}
+          onHandleCount={onHandleCount}
+          onHandleCountChange={onHandleCountChange}
+          purchaseCount={purchaseCount}
+          onPurchase={onPurchase}
+          onAddCart={onAddCart}
+        />
         <ProductTabs tabs={tabs} onClick={onClick} selectedTab={selectedTab} />
         {selectedTab === 'order' && <ProductOrderInformation />}
         {selectedTab === 'product' && (

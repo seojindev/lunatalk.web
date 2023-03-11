@@ -1,20 +1,27 @@
 import _ from 'lodash';
 import Image from 'next/image';
-import { IoClose } from 'react-icons/io5';
-import Select from 'react-select';
 import { Product } from '../../../types/api';
 
 interface ProductInformationProps {
   item: Product;
+  onHandleCount: (type: string) => void;
+  onHandleCountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  purchaseCount: number;
+  onPurchase: () => void;
+  onAddCart: () => void;
 }
 
 function ProductInformation(props: ProductInformationProps) {
-  const { item } = props;
+  const {
+    item,
+    onHandleCount,
+    onHandleCountChange,
+    purchaseCount,
+    onPurchase,
+    onAddCart,
+  } = props;
   const colors = item.options.color;
-  const optionList = _.map(colors, (color) => ({
-    value: color.id,
-    label: color.name,
-  }));
+
   return (
     <div className="grid grid-cols-2 tablet:grid-cols-1 gap-3">
       <div className="flex justify-center w-[400px] mx-auto tablet:w-full tablet:max-w-[400px]">
@@ -39,7 +46,7 @@ function ProductInformation(props: ProductInformationProps) {
         <div className="text-[#a749ff] text-[15px] tablet:text-sm">
           <p>{item.reviews.length} 리뷰</p>
         </div>
-        <div className="tablet:text-xs">
+        {/* <div className="tablet:text-xs">
           <Select
             id="selectBox"
             instanceId="selectbox"
@@ -49,27 +56,35 @@ function ProductInformation(props: ProductInformationProps) {
               console.log(e);
             }}
           />
-        </div>
+        </div> */}
         <div className="border-[1px] rounded p-3 flex flex-col gap-3 tablet:text-sm">
           <div className="flex justify-between ">
-            <p>오렌지</p>
-            <button type="button">
+            <p>{colors[0].name}</p>
+            {/* <button type="button">
               <IoClose />
-            </button>
+            </button> */}
           </div>
           <div className="flex justify-between">
-            <div>
+            <div className="w-[40px] h-[40px]">
               <input
-                type="text"
-                className="bg-slate-100 rounded w-10 text-center text-sm p-2"
-                value={1}
+                type="number"
+                className="bg-slate-100 rounded text-center text-sm block w-full h-full"
+                value={purchaseCount}
+                onChange={onHandleCountChange}
               />
             </div>
             <div className="flex gap-3 tablet:text-sm">
-              <button className="border-[1px] border-slate-600 rounded  text-center text-xl px-3 justify-center items-center  tablet:text-sm">
+              <button
+                onClick={() => onHandleCount('+')}
+                className="border-[1px] border-slate-600 rounded  text-center text-xl px-3 justify-center items-center  tablet:text-sm"
+              >
                 +
               </button>
-              <button className="border-[1px] border-slate-400 rounded  text-center text-xl px-3 tablet:text-sm">
+              <button
+                onClick={() => onHandleCount('-')}
+                className="border-[1px] border-slate-400 rounded  text-center text-xl px-3 tablet:text-sm disabled:bg-slate-100 disabled:border-none"
+                disabled={purchaseCount <= 1}
+              >
                 -
               </button>
             </div>
@@ -77,12 +92,13 @@ function ProductInformation(props: ProductInformationProps) {
         </div>
         <div className="flex justify-between border-t-[1px] pt-3 mt-3 text-[13px] tracking-tight">
           <p>총 상품 가격</p>
-          <p>17450원</p>
+          <p>{(item.price.number * purchaseCount).toLocaleString()}원</p>
         </div>
         <div className="grid grid-cols-2 gap-3 tablet:text-sm">
           <div className="">
             <button
               type="button"
+              onClick={onPurchase}
               className="bg-[#a749ff] text-white py-3 tablet:py-2 block w-full"
             >
               구매하기
@@ -90,6 +106,7 @@ function ProductInformation(props: ProductInformationProps) {
           </div>
           <div>
             <button
+              onClick={onAddCart}
               type="button"
               className="bg-[#a749ff] text-white py-3 tablet:py-2 block w-full"
             >
