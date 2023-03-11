@@ -4,7 +4,7 @@ import client, { accessTokenAdd } from '../axios';
 export async function getCategoryListByOption(
   uuid: string,
   optionNumber: string,
-  accessToken?: string | null,
+  accessToken?: string,
 ) {
   const data = await client<ResponseInterface<CategoryList>>({
     method: 'GET',
