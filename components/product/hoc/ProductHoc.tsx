@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-toastify';
+import cartMutation from '../../../hooks/mutation/cart';
 import useProductDataQuery from '../../../hooks/query/useProductDataQuery';
 import useUser from '../../../hooks/user/useUser';
 
@@ -12,6 +13,8 @@ function ProductHoc(props: ProductHocProps) {
   const { WrappedComponent } = props;
   const router = useRouter();
   const { isLogin } = useUser();
+
+  const { addMutate } = cartMutation();
 
   const { uuid } = router.query;
 
@@ -67,12 +70,12 @@ function ProductHoc(props: ProductHocProps) {
     // TODO:
   };
 
-  const onAddCart = () => {
+  const onAddCart = (uuid: string) => {
     if (!isLogin) {
       toast.warning('로그인이 필요한 서비스 입니다.');
       router.push('/auth/login');
     }
-    // TODO:
+    addMutate(uuid);
   };
 
   const productData = {

@@ -8,6 +8,7 @@ interface ProductListProps {
 
 function ProductList(props: ProductListProps) {
   const { items } = props;
+
   return (
     <div className="grid gap-10 grid-cols-4 tablet:grid-cols-3 mobile:grid-cols-2">
       {_.map(items, (item) => (

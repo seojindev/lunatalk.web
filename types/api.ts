@@ -1,4 +1,4 @@
-import { Image, Product as commonProduct } from './common';
+import { Image, Option, Price, Product as commonProduct } from './common';
 export interface Error {
   error_message?: string;
 }
@@ -42,25 +42,13 @@ export interface CategoryList {
 export interface Product {
   uuid: string;
   name: string;
-  original_price: {
-    number: number;
-    string: string;
-  };
-  price: {
-    number: number;
-    string: string;
-  };
+  original_price: Price;
+  price: Price;
   quantity: number;
   reviews: any[];
   options: {
-    color: {
-      id: number;
-      name: string;
-    }[];
-    wireless: {
-      id: number;
-      name: string;
-    }[];
+    color: Option[];
+    wireless: Option[];
   };
   image: {
     rep: Image[];
@@ -117,4 +105,13 @@ export interface NoticeDetail {
   image: any[];
   title: string;
   uuid: string;
+}
+
+export interface Cart {
+  cart_id: number;
+  color: Option[];
+  name: string;
+  price: Price;
+  product_uuid: string;
+  rep_image: Image;
 }

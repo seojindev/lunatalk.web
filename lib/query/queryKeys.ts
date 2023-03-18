@@ -9,4 +9,6 @@ export const queryKeys = {
   product: 'product',
   recommend: 'recommend',
   notice: 'notice',
+
+  cart: 'cart',
 };

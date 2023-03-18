@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Image from 'next/image';
 import { Product } from '../../../types/api';
 
@@ -8,7 +7,7 @@ interface ProductInformationProps {
   onHandleCountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   purchaseCount: number;
   onPurchase: () => void;
-  onAddCart: () => void;
+  onAddCart: (uuid: string) => void;
 }
 
 function ProductInformation(props: ProductInformationProps) {
@@ -106,7 +105,7 @@ function ProductInformation(props: ProductInformationProps) {
           </div>
           <div>
             <button
-              onClick={onAddCart}
+              onClick={() => onAddCart(item.uuid)}
               type="button"
               className="bg-[#a749ff] text-white py-3 tablet:py-2 block w-full"
             >

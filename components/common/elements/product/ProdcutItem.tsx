@@ -49,11 +49,11 @@ function ProductItem(props: ProductItemProps) {
             </p>
             <p>{item.price.string}원</p>
           </div>
-          <div className="w-full bg-[#a749ff] text-white py-2 text-base tablet:text-xs">
+          {/* <div className="w-full bg-[#a749ff] text-white py-2 text-base tablet:text-xs">
             <button type="button" className="block w-full">
               장바구니 담기
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </Link>

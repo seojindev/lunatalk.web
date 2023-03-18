@@ -55,3 +55,13 @@ export interface Image {
   url: string;
   file_name: string;
 }
+
+export interface Option {
+  id: number;
+  name: string;
+}
+
+export interface Price {
+  number: number;
+  string: string;
+}

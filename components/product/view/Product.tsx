@@ -17,7 +17,7 @@ interface ProductProps {
   onHandleCountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   purchaseCount: number;
   onPurchase: () => void;
-  onAddCart: () => void;
+  onAddCart: (uuid: string) => void;
 }
 
 function Product(props: ProductProps) {
