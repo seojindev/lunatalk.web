@@ -1,6 +1,8 @@
+import { queryClient } from './../../lib/query/queryClient';
 import { deleteCookie, getCookie } from 'cookies-next';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { queryKeys } from '../../lib/query/queryKeys';
 
 function useUser() {
   const accessTokenCookie = getCookie('accessToken');
@@ -14,6 +16,7 @@ function useUser() {
   const logout = () => {
     deleteCookie('accessToken');
     deleteCookie('refreshToken');
+    queryClient.invalidateQueries([queryKeys.cart]);
     toast.success('로그아웃 되었습니다.');
     router.push('/');
   };
