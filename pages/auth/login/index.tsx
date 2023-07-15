@@ -1,14 +1,18 @@
 import { getCookie } from 'cookies-next';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
 const LoginComponent = dynamic<any>(
   () => import('../../../components/auth/LoginComponent'),
 );
 
-function Login() {
+// function Login() {
+//   return <LoginComponent />;
+// }
+
+const Login: NextPage = () => {
   return <LoginComponent />;
-}
+};
 
 export default Login;
 

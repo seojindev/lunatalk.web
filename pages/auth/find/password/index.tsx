@@ -1,14 +1,14 @@
 import { getCookie } from 'cookies-next';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
 const FindPasswordComponent = dynamic<any>(
   () => import('../../../../components/auth/FIndPasswordComponent'),
 );
 
-function FindPassword() {
+const FindPassword: NextPage = () => {
   return <FindPasswordComponent />;
-}
+};
 
 export default FindPassword;
 

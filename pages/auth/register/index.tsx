@@ -1,14 +1,14 @@
 import { getCookie } from 'cookies-next';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
 const RegisterComponent = dynamic<any>(
   () => import('../../../components/auth/RegisterComponent'),
 );
 
-function Register() {
+const Register: NextPage = () => {
   return <RegisterComponent />;
-}
+};
 
 export default Register;
 

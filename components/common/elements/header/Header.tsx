@@ -48,7 +48,10 @@ function Header(props: Props) {
           ))}
         </nav>
         <div className="flex gap-5 items-center justify-end grid-in-[side]">
-          <span className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1] cursor-pointer">
+          <span
+            className="text-[23px] tablet:text-[16px] hover:text-[#6f42c1] cursor-pointer"
+            onClick={() => router.push('/search')}
+          >
             <BsSearch />
           </span>
           <span

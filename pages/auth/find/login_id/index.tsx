@@ -1,14 +1,14 @@
 import { getCookie } from 'cookies-next';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
 const FindLoginIdComponent = dynamic<any>(
   () => import('../../../../components/auth/FIndLoginIdComponent'),
 );
 
-function FindLoginId() {
+const FindLoginId: NextPage = () => {
   return <FindLoginIdComponent />;
-}
+};
 
 export default FindLoginId;
 
