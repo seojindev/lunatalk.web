@@ -8,6 +8,7 @@ interface Props {
   value?: string;
   onChange?: (e: any) => void;
   disabled?: boolean;
+  className?: string;
 }
 
 function Input({
@@ -20,12 +21,16 @@ function Input({
   value,
   onChange,
   disabled = false,
+  className,
 }: Props) {
   return (
     <div className="flex flex-col w-full gap-3">
       <div className="flex flex-row gap-3 items-center">
         <input
-          className="border-[1px] border-[#ebebeb] p-4 mobile:text-sm mobile:p-3 w-full disabled:bg-[#f2f2f2] disabled:text-[#999]"
+          className={
+            'border-[1px] border-[#ebebeb] p-4 mobile:text-sm mobile:p-3 w-full disabled:bg-[#f2f2f2] disabled:text-[#999] ' +
+            className
+          }
           type={type}
           placeholder={placeHolder}
           name={name}

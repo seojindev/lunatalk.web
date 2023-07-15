@@ -3,20 +3,22 @@ import { MoonLoader } from 'react-spinners';
 
 interface Props {
   text: string;
-  isDisabled: boolean;
-  isLoading: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset' | undefined;
   buttonType?: 'full' | 'not-full';
+  isRounded?: boolean;
 }
 
 function Button({
   text,
-  isDisabled,
-  isLoading,
+  isDisabled = false,
+  isLoading = false,
   type,
   onClick,
   buttonType = 'full',
+  isRounded = false,
 }: Props) {
   return (
     <button
@@ -27,6 +29,7 @@ function Button({
         { 'bg-[#a749ff] text-white': !isDisabled },
         { 'w-[100px]': buttonType === 'not-full' },
         { 'w-full': buttonType === 'full' },
+        { rounded: isRounded },
       )}
       disabled={isDisabled || isLoading}
       onClick={onClick}
