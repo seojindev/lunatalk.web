@@ -24,10 +24,10 @@ function Find(props: Props) {
     <AuthForm handleSubmit={onSubmit}>
       <div className="flex justify-center gap-8 text-xl font-semibold">
         <Link
-          href={'/auth/find/loginId'}
+          href={'/auth/find/login_id'}
           className={classNames(
             "relative before:w-[1px] before:content=[''] before:h-[18px] before:absolute before:right-[-15px] before:bottom-[5px] before:bg-[#454545] before:mx-auto",
-            { 'text-[#a749ff]': router.pathname === '/auth/find/loginId' },
+            { 'text-[#a749ff]': router.pathname === '/auth/find/login_id' },
           )}
         >
           <h2>아이디 찾기</h2>
