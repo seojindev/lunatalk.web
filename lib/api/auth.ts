@@ -59,3 +59,28 @@ export async function phoneAuthConfirm(authIndex: number, authCode: string) {
 
   return data.result;
 }
+
+export async function findLoginId(email: string) {
+  const data = await client<ResponseInterface<undefined>>({
+    method: 'POST',
+    url: '/api/front/v1/auth/findId',
+    body: {
+      email,
+    },
+  });
+
+  return data;
+}
+
+export async function findPassword(email: string, loginId: string) {
+  const data = await client<ResponseInterface<undefined>>({
+    method: 'POST',
+    url: '/api/front/v1/auth/resetPassword',
+    body: {
+      email,
+      login_id: loginId,
+    },
+  });
+
+  return data;
+}
