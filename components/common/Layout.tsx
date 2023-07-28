@@ -3,7 +3,6 @@ import useInitDataQuery from '../../hooks/query/useInitDataQuery';
 
 import { Footer, Header } from './elements';
 
-import Spinner from './Spinner';
 import _ from 'lodash';
 
 interface Props {

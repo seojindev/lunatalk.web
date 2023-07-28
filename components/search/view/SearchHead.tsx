@@ -1,4 +1,3 @@
-import router from 'next/router';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Button from '../../auth/elements/Button';
 import Input from '../../auth/elements/Input';
