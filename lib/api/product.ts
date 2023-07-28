@@ -18,3 +18,11 @@ export async function getProductRecommend(uuid: string, accessToken?: string) {
   });
   return data.result;
 }
+
+export async function productSearch(keyword: string) {
+  const data = await client<ResponseInterface<CommonProduct[]>>({
+    method: 'GET',
+    url: `/api/front/v1/product/${keyword}/search-list`,
+  });
+  return data.result;
+}

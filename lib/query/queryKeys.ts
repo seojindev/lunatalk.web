@@ -11,4 +11,5 @@ export const queryKeys = {
   notice: 'notice',
 
   cart: 'cart',
+  search: 'search',
 };

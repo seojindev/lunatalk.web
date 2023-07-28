@@ -14,7 +14,7 @@ function Layout(props: Props) {
   const { children } = props;
   const { data: initState } = useInitDataQuery();
   const router = useRouter();
-  const notHeaderAndFooterPath = ['/search'];
+  const notHeaderAndFooterPath = ['/search', '/search/:keyword'];
   return (
     <div>
       {!_.includes(notHeaderAndFooterPath, router.pathname) && (

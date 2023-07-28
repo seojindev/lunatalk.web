@@ -27,7 +27,8 @@
     "react-select": "^5.7.0",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.1",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "throttle-debounce": "^5.0.0"
   },
   "devDependencies": {
     "@savvywombat/tailwindcss-grid-areas": "^3.0.1",
@@ -35,6 +36,7 @@
     "@types/node": "18.13.0",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
+    "@types/throttle-debounce": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
     "autoprefixer": "^10.4.13",
