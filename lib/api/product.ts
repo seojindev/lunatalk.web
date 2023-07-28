@@ -24,5 +24,5 @@ export async function productSearch(keyword: string) {
     method: 'GET',
     url: `/api/front/v1/product/${keyword}/search-list`,
   });
-  return data.result;
+  return data.result || [];
 }

@@ -7,7 +7,6 @@ function useProductSearchQuery(keyword: string) {
     queryKey: [queryKeys.product, queryKeys.search, keyword],
     queryFn: () => productSearch(keyword),
     enabled: !!keyword,
-    refetchOnMount: 'always',
   });
 
   return { productData };

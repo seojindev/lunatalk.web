@@ -29,7 +29,7 @@ function Button({
         { 'bg-[#a749ff] text-white': !isDisabled },
         { 'w-[100px]': buttonType === 'not-full' },
         { 'w-full': buttonType === 'full' },
-        { rounded: isRounded },
+        { 'rounded-lg': isRounded },
       )}
       disabled={isDisabled || isLoading}
       onClick={onClick}

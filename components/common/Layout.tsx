@@ -21,7 +21,7 @@ function Layout(props: Props) {
         <Header initState={initState} />
       )}
       <div className="max-w-[1200px] py-16 mx-auto tablet:p-2">
-        <Spinner />
+        {/* <Spinner /> */}
         {children}
       </div>
       {!_.includes(notHeaderAndFooterPath, router.pathname) && <Footer />}

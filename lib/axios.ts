@@ -52,7 +52,7 @@ export default async function client<T extends Error>({
     return data;
   } catch (e: any) {
     // toast.warning(e.response.data.error_message);
-    // console.log(e);
+    // console.log('여기타냐?', e);
     return e;
   }
 }
