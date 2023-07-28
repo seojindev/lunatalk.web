@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Product } from '../../../types/api';
 import { Product as CommonProduct } from '../../../types/common';
 import EventProductBox from '../../main/elements/EventProductBox';
@@ -36,23 +37,34 @@ function Product(props: ProductProps) {
 
   return (
     product && (
-      <div className="flex flex-col gap-8">
-        <ProductInformation
-          item={product}
-          onHandleCount={onHandleCount}
-          onHandleCountChange={onHandleCountChange}
-          purchaseCount={purchaseCount}
-          onPurchase={onPurchase}
-          onAddCart={onAddCart}
-        />
-        <ProductTabs tabs={tabs} onClick={onClick} selectedTab={selectedTab} />
-        {selectedTab === 'order' && <ProductOrderInformation />}
-        {selectedTab === 'product' && (
-          <ProductDetailImage image={product.image.detail} />
-        )}
-        {selectedTab === 'review' && <ProductReview />}
-        {recommend && <EventProductBox name={'추천 상품'} items={recommend} />}
-      </div>
+      <>
+        <Head>
+          <title>루나톡 - {product.name}</title>
+        </Head>
+        <div className="flex flex-col gap-8">
+          <ProductInformation
+            item={product}
+            onHandleCount={onHandleCount}
+            onHandleCountChange={onHandleCountChange}
+            purchaseCount={purchaseCount}
+            onPurchase={onPurchase}
+            onAddCart={onAddCart}
+          />
+          <ProductTabs
+            tabs={tabs}
+            onClick={onClick}
+            selectedTab={selectedTab}
+          />
+          {selectedTab === 'order' && <ProductOrderInformation />}
+          {selectedTab === 'product' && (
+            <ProductDetailImage image={product.image.detail} />
+          )}
+          {selectedTab === 'review' && <ProductReview />}
+          {recommend && (
+            <EventProductBox name={'추천 상품'} items={recommend} />
+          )}
+        </div>
+      </>
     )
   );
 }
