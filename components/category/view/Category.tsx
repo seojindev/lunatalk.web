@@ -15,9 +15,6 @@ function Category(props: CategoryProps) {
 
   return (
     <>
-      <Head>
-        <title>루나톡 - 가방,다이어리 판매 브랜드</title>
-      </Head>
       <div className="flex flex-col flex-wrap gap-5">
         <CategorySelect
           options={options}
