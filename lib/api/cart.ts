@@ -19,6 +19,10 @@ export async function addCart(accesstoken: string, productUuid: string) {
     headers: accessTokenAdd(undefined, accesstoken),
   });
 
+  if (data.error_message) {
+    throw new Error(data.error_message);
+  }
+
   return data.message;
 }
 

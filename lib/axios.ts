@@ -53,6 +53,6 @@ export default async function client<T extends Error>({
   } catch (e: any) {
     // toast.warning(e.response.data.error_message);
     // console.log('여기타냐?', e);
-    return e;
+    return e.response.data;
   }
 }

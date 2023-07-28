@@ -19,9 +19,13 @@ function cartMutation() {
   const { mutate: addMutate } = useMutation(
     (productUuid: string) => addCart(accessToken, productUuid),
     {
-      onSuccess: () => {
+      onSuccess: (data) => {
         queryClient.invalidateQueries([queryKeys.cart]);
-        toast.success('선택한 상품이 장바구니에 추가 되었습니다.');
+        toast.success(data);
+      },
+      onError: (err: Error) => {
+        console.error(err);
+        toast.warning(err.message || '잠시후 다시 이용해주세요.');
       },
     },
   );
