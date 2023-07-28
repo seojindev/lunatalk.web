@@ -15,9 +15,12 @@ function CategoryItem(props: Props) {
           <Image
             src={props.url}
             alt={props.name}
-            className="block w-full"
+            className="block w-full aspect-[1/1] object-cover"
             width={270}
             height={270}
+            loading="lazy"
+            placeholder="blur" // 추가
+            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
           />
         ) : (
           <div className="w-full h-full"></div>

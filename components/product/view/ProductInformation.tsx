@@ -30,6 +30,8 @@ function ProductInformation(props: ProductInformationProps) {
           height={280}
           alt="이미지"
           className="block w-full"
+          placeholder="blur" // 추가
+          blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
         />
       </div>
       <div className="flex flex-col gap-3 flex-wrap">

@@ -22,6 +22,9 @@ function ProductItem(props: ProductItemProps) {
                 width={400}
                 height={400}
                 className="block"
+                loading="lazy"
+                placeholder="blur" // 추가
+                blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
               />
             </div>
           )}

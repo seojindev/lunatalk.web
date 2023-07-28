@@ -17,6 +17,9 @@ function ProductDetailImage(props: ProductDetailImageProps) {
           alt="상품"
           width={1170}
           height={30000}
+          loading="lazy"
+          placeholder="blur" // 추가
+          blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
         />
       ))}
     </div>
