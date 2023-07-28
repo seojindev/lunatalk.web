@@ -60,7 +60,7 @@ function ProductInformation(props: ProductInformationProps) {
         </div> */}
         <div className="border-[1px] rounded p-3 flex flex-col gap-3 tablet:text-sm">
           <div className="flex justify-between ">
-            <p>{colors[0].name}</p>
+            <p>{colors.length ? colors[0].name : item.name}</p>
             {/* <button type="button">
               <IoClose />
             </button> */}
