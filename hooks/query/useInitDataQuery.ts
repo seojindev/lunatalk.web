@@ -6,7 +6,7 @@ import { AppBase } from '../../types/common';
 
 function useInitDataQuery() {
   const [initState, setInitState] = useRecoilState(appInitState);
-  const { data } = useQuery(['initData'], () => getAppInitData(), {
+  useQuery(['initData'], () => getAppInitData(), {
     onSuccess: (result: AppBase) => {
       setInitState(result);
     },
