@@ -7,7 +7,7 @@ import { AppBase } from '../../../../types/common';
 import UserMenu from './UserMenu';
 
 interface Props {
-  initState: AppBase | undefined;
+  initState: AppBase | null;
 }
 
 function Header(props: Props) {
