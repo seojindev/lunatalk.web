@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import cartMutation from '../../../hooks/mutation/cart';
 import useProductDataQuery from '../../../hooks/query/useProductDataQuery';
 import useUser from '../../../hooks/user/useUser';
+import { Product } from '../../../types/common';
 
 interface ProductHocProps {
   WrappedComponent: React.ComponentType<any>;
@@ -60,13 +61,26 @@ function ProductHoc(props: ProductHocProps) {
     [purchaseCount],
   );
 
-  const onPurchase = () => {
+  const onPurchase = (product: Product) => {
     console.log(isLogin);
 
     if (!isLogin) {
       toast.warning('로그인이 필요한 서비스 입니다.');
       router.push('/auth/login');
     }
+    const { uuid, name, price } = product;
+
+    const result = {
+      uuid,
+      name,
+      price,
+      count: purchaseCount,
+    };
+
+    router.push({
+      pathname: '/order',
+      query: { item: Buffer.from(JSON.stringify([result])).toString('base64') },
+    });
     // TODO:
   };
 

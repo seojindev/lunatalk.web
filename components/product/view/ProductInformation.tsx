@@ -6,7 +6,7 @@ interface ProductInformationProps {
   onHandleCount: (type: string) => void;
   onHandleCountChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   purchaseCount: number;
-  onPurchase: () => void;
+  onPurchase: (item: Product) => void;
   onAddCart: (uuid: string) => void;
 }
 
@@ -99,7 +99,7 @@ function ProductInformation(props: ProductInformationProps) {
           <div className="">
             <button
               type="button"
-              onClick={onPurchase}
+              onClick={() => onPurchase(item)}
               className="bg-[#a749ff] text-white py-3 tablet:py-2 block w-full"
             >
               구매하기

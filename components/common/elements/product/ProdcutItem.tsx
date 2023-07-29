@@ -30,9 +30,7 @@ function ProductItem(props: ProductItemProps) {
           )}
         </div>
         <div className="text-center w-full">
-          <h3 className="text-sm font-bold tablet:text-xs tablet:mb-1">
-            {item.name}
-          </h3>
+          <h3 className="text-sm tablet:text-xs tablet:mb-1">{item.name}</h3>
           <p className="text-xs text-[#888] tablet:text-xs tablet:mb-1">
             리뷰: {item.review_count.number}
           </p>
