@@ -2,7 +2,11 @@ import { getCookie } from 'cookies-next';
 import { GetServerSideProps, NextPage } from 'next';
 import Button from '../../components/auth/elements/Button';
 import { useDaumPostcodePopup } from 'react-daum-postcode';
-import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import _ from 'lodash';
+import { setOrder } from '../../lib/api/order';
+import useUser from '../../hooks/user/useUser';
 
 interface OrderProps {
   items: {
@@ -16,34 +20,83 @@ interface OrderProps {
   }[];
 }
 
+interface OrderForm {
+  name: string;
+  zipcode: string;
+  address1: string;
+  address2: string;
+  phone: string;
+  email: string;
+  message: string;
+  product: string[];
+}
+
 const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
+  const { accessToken } = useUser();
   const CURRENT_URL =
     'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
   const open = useDaumPostcodePopup(CURRENT_URL);
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     open({ onComplete: handleComplete });
   };
+
+  const { register, setValue, handleSubmit } = useForm<OrderForm>({
+    mode: 'onSubmit',
+    defaultValues: {
+      name: '',
+      zipcode: '',
+      address1: '',
+      address2: '',
+      phone: '',
+      email: 'kkwondev@gmail.com',
+      message: '',
+      product: [],
+    },
+  });
+
+  useEffect(() => {
+    if (!items.length) return;
+
+    _.forEach(items, (item) => {
+      const products = _.times(item.count, _.constant(item.uuid));
+      setValue('product', products);
+    });
+  }, [items]);
 
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let extraAddress = '';
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-    }
     console.log(data);
+
+    if (data.bname !== '') {
+      extraAddress += data.bname;
+    }
+    if (data.buildingName !== '') {
+      extraAddress +=
+        extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+    }
+    fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    setValue('zipcode', data.zonecode);
+    setValue('address1', fullAddress);
+  };
+
+  const onSubmit = async (data: OrderForm) => {
+    const response = await setOrder(
+      { ...data, email: 'kkwondev@gmail.com' },
+      accessToken,
+    );
+    if (response && _.has(response, 'pay_url')) {
+      window.open(response.pay_url, '_blank', 'width=800, height=800');
+    }
   };
 
   return (
-    <div className="flex flex-row gap-5 tablet:flex-col h-auto">
+    <form
+      className="flex flex-row gap-5 tablet:flex-col h-auto"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex-grow flex flex-col gap-3 w-[50%] tablet:w-full">
         <h2 className="text-xl font-semibold tracking-[-1px]">배송정보</h2>
         <div className="flex flex-col gap-3">
@@ -54,6 +107,7 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
             <input
               type="text"
               className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px]"
+              {...register('name', { required: '이름을 입력해주세요.' })}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -66,6 +120,7 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
                 className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px] w-full"
                 disabled
                 placeholder="우편번호"
+                {...register('zipcode')}
               />
               <Button
                 type="button"
@@ -79,11 +134,13 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
               className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px] w-full"
               disabled
               placeholder="주소"
+              {...register('address1')}
             />
             <input
               type="text"
               className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px] w-full"
               placeholder="나머지 주소"
+              {...register('address2')}
             />
           </div>
         </div>
@@ -94,6 +151,7 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
           <input
             type="text"
             className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px]"
+            {...register('phone')}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -103,6 +161,7 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
           <input
             type="text"
             className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px]"
+            {...register('message')}
           />
         </div>
       </div>
@@ -153,7 +212,7 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
         </div>
         <Button type="submit" text="결제하기" isRounded={true} />
       </div>
-    </div>
+    </form>
   );
 };
 
