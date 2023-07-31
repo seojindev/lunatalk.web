@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import _ from 'lodash';
 import { setOrder } from '../../lib/api/order';
 import useUser from '../../hooks/user/useUser';
+import useOrderMyInformation from '../../hooks/query/useOrderMyInformation';
+import { toast } from 'react-toastify';
 
 interface OrderProps {
   items: {
@@ -33,6 +35,7 @@ interface OrderForm {
 
 const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
   const { accessToken } = useUser();
+  const { orderInformation } = useOrderMyInformation();
   const CURRENT_URL =
     'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
   const open = useDaumPostcodePopup(CURRENT_URL);
@@ -41,7 +44,12 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
     open({ onComplete: handleComplete });
   };
 
-  const { register, setValue, handleSubmit } = useForm<OrderForm>({
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<OrderForm>({
     mode: 'onSubmit',
     defaultValues: {
       name: '',
@@ -49,11 +57,13 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
       address1: '',
       address2: '',
       phone: '',
-      email: 'kkwondev@gmail.com',
-      message: '',
+      email: '',
+      message: '안전하게 배송해주세요.',
       product: [],
     },
   });
+
+  console.log(orderInformation);
 
   useEffect(() => {
     if (!items.length) return;
@@ -64,11 +74,22 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
     });
   }, [items]);
 
+  useEffect(() => {
+    if (!orderInformation) return;
+    setValue('name', orderInformation.name);
+    setValue('zipcode', orderInformation.address.zipcode);
+    setValue('address1', orderInformation.address.step1 || '');
+    setValue('address1', orderInformation.address.step2 || '');
+    setValue(
+      'phone',
+      `${orderInformation.phone_number.step1}${orderInformation.phone_number.step2}${orderInformation.phone_number.step3}`,
+    );
+    setValue('email', orderInformation.email.full_email);
+  }, [orderInformation]);
+
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let extraAddress = '';
-
-    console.log(data);
 
     if (data.bname !== '') {
       extraAddress += data.bname;
@@ -89,6 +110,8 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
     );
     if (response && _.has(response, 'pay_url')) {
       window.open(response.pay_url, '_blank', 'width=800, height=800');
+    } else {
+      toast.warning(response.error_message);
     }
   };
 
@@ -109,6 +132,11 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
               className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px]"
               {...register('name', { required: '이름을 입력해주세요.' })}
             />
+            {errors.name?.message && (
+              <span className="text-[red] -tracking-normal">
+                {errors.name.message}
+              </span>
+            )}
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="" className="text-[#000] font-semibold">
@@ -120,7 +148,7 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
                 className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px] w-full"
                 disabled
                 placeholder="우편번호"
-                {...register('zipcode')}
+                {...register('zipcode', { required: '주소를 검색해주세요.' })}
               />
               <Button
                 type="button"
@@ -134,14 +162,26 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
               className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px] w-full"
               disabled
               placeholder="주소"
-              {...register('address1')}
+              {...register('address1', { required: '주소를 검색해주세요.' })}
             />
             <input
               type="text"
               className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px] w-full"
               placeholder="나머지 주소"
-              {...register('address2')}
+              {...register('address2', {
+                required: '나머지 주소를 입력해주세요.',
+              })}
             />
+            {errors.address1?.message && (
+              <span className="text-[red] -tracking-normal">
+                {errors.address1.message}
+              </span>
+            )}
+            {errors.address2?.message && (
+              <span className="text-[red] -tracking-normal">
+                {errors.address2.message}
+              </span>
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-2">
@@ -151,8 +191,15 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
           <input
             type="text"
             className="border-[1px] border-[#e6e6e6] px-5 py-3 rounded outline-none text-[14px]"
-            {...register('phone')}
+            {...register('phone', {
+              required: '- 없이 휴대폰번호를 입력해주세요.',
+            })}
           />
+          {errors.phone?.message && (
+            <span className="text-[red] -tracking-normal">
+              {errors.phone.message}
+            </span>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="" className="text-[#000] font-semibold">

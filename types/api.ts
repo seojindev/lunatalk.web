@@ -115,3 +115,28 @@ export interface Cart {
   product_uuid: string;
   rep_image: Image;
 }
+
+export interface MyOrderInformation {
+  address: {
+    zipcode: string;
+    step1: string;
+    step2: string;
+  };
+  email: {
+    full_email: string;
+    gubun1: {
+      step1: string;
+      step2: string;
+    };
+    gubun2: {
+      step1: string;
+      step2: string;
+    };
+  };
+  name: string;
+  phone_number: {
+    step1: string;
+    step2: string;
+    step3: string;
+  };
+}
