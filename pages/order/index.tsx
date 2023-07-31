@@ -63,8 +63,6 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
     },
   });
 
-  console.log(orderInformation);
-
   useEffect(() => {
     if (!items.length) return;
 
@@ -104,10 +102,7 @@ const Order: NextPage<OrderProps> = ({ items }: OrderProps) => {
   };
 
   const onSubmit = async (data: OrderForm) => {
-    const response = await setOrder(
-      { ...data, email: 'kkwondev@gmail.com' },
-      accessToken,
-    );
+    const response = await setOrder(data, accessToken);
     if (response && _.has(response, 'pay_url')) {
       window.open(response.pay_url, '_blank', 'width=800, height=800');
     } else {
