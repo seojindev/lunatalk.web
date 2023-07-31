@@ -10,7 +10,7 @@ function cartMutation() {
     (cartId: number) => deleteCart(accessToken, cartId),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries([queryKeys.cart]);
+        queryClient.invalidateQueries([queryKeys.user, queryKeys.cart]);
         toast.success('선택한 상품이 장바구니에서 제거 되었습니다.');
       },
     },

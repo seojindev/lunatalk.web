@@ -13,5 +13,5 @@ export const queryKeys = {
   cart: 'cart',
   search: 'search',
   order: 'order',
-  information: 'information',
+  user: 'user',
 };

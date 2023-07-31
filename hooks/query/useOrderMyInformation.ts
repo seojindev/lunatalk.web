@@ -6,7 +6,7 @@ import { getMyOrderInfo } from '../../lib/api/order';
 function useOrderMyInformation() {
   const { accessToken } = useUser();
   const { data } = useQuery({
-    queryKey: [queryKeys.order, queryKeys.information],
+    queryKey: [queryKeys.order, queryKeys.user],
     queryFn: () => getMyOrderInfo(accessToken),
   });
 

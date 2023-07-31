@@ -6,7 +6,7 @@ import useUser from '../user/useUser';
 function useCartQuery() {
   const { accessToken } = useUser();
   const { data: list } = useQuery({
-    queryKey: [queryKeys.cart],
+    queryKey: [queryKeys.user, queryKeys.cart],
     queryFn: () => getCartList(accessToken),
   });
 

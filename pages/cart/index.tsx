@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery([queryKeys.cart], () =>
+  await queryClient.prefetchQuery([queryKeys.cart, queryKeys.user], () =>
     getCartList(accessToken as string),
   );
 

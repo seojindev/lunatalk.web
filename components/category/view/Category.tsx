@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { Product } from '../../../types/common';
 import ProductList from '../../common/elements/product/ProductList';
 import CategorySelect from './CategorySelect';

@@ -16,7 +16,7 @@ function useUser() {
   const logout = () => {
     deleteCookie('accessToken');
     deleteCookie('refreshToken');
-    queryClient.invalidateQueries([queryKeys.cart]);
+    queryClient.invalidateQueries([queryKeys.user]);
     toast.success('로그아웃 되었습니다.');
     router.push('/');
   };
