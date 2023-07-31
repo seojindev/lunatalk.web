@@ -58,7 +58,7 @@ function useOrder({ items }: Props) {
     setValue('name', orderInformation.name);
     setValue('zipcode', orderInformation.address.zipcode);
     setValue('address1', orderInformation.address.step1 || '');
-    setValue('address1', orderInformation.address.step2 || '');
+    setValue('address2', orderInformation.address.step2 || '');
     setValue(
       'phone',
       `${orderInformation.phone_number.step1}${orderInformation.phone_number.step2}${orderInformation.phone_number.step3}`,
