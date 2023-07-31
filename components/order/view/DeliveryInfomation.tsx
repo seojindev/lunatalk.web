@@ -14,6 +14,7 @@ function DeliveryInformation(props: Props) {
       <h2 className="text-xl font-semibold tracking-[-1px]">배송정보</h2>
       <div className="flex flex-col gap-3">
         <Input
+          id="name"
           name="이름"
           register={register('name', { required: '이름을 입력해주세요.' })}
           error={errors.name?.message}
@@ -65,6 +66,7 @@ function DeliveryInformation(props: Props) {
         </div>
       </div>
       <Input
+        id="phone"
         name="휴대폰번호"
         register={register('phone', {
           required: '- 없이 휴대폰번호를 입력해주세요. ',
@@ -72,6 +74,7 @@ function DeliveryInformation(props: Props) {
         error={errors.phone?.message}
       />
       <Input
+        id="message"
         name="배송메세지"
         register={register('message', {
           required: '배송메세지를 입력해주세요.',
