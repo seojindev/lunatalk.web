@@ -7,6 +7,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { queryClient as CustormQueryClient } from '../lib/query/queryClient';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { DefaultSeo } from 'next-seo';
+import SEO from '../seo.config';
 
 function MyApp({ Component, pageProps }: any) {
   const [queryClient] = useState(() => CustormQueryClient);
@@ -16,6 +18,7 @@ function MyApp({ Component, pageProps }: any) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <Layout>
+            <DefaultSeo {...SEO} />
             <Component {...pageProps} />
           </Layout>
         </Hydrate>

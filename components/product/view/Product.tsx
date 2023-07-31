@@ -7,6 +7,7 @@ import ProductInformation from './ProductInformation';
 import ProductOrderInformation from './ProductOrderInformation';
 import ProductReview from './ProductReview';
 import ProductTabs from './ProductTabs';
+import { NextSeo } from 'next-seo';
 
 interface ProductProps {
   onClick: (value: string) => void;
@@ -38,9 +39,23 @@ function Product(props: ProductProps) {
   return (
     product && (
       <>
-        <Head>
-          <title>루나톡 - {product.name}</title>
-        </Head>
+        <NextSeo
+          title={`루나톡 - ${product.name}`}
+          description={product.name}
+          canonical={`https://dev.lunatalk.co.kr`}
+          openGraph={{
+            type: 'website',
+            site_name: '루나톡',
+            title: product.name,
+            url: `https://dev.lunatalk.co.kr/product/${product.uuid}`,
+            images: [{ url: product.image.rep[0].url, alt: product.name }],
+          }}
+          twitter={{
+            handle: '@handle',
+            site: '@site',
+            cardType: 'summary_large_image',
+          }}
+        />
         <div className="flex flex-col gap-8">
           <ProductInformation
             item={product}
