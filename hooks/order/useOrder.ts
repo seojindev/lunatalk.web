@@ -23,7 +23,6 @@ interface Props {
 
 function useOrder({ items }: Props) {
   const { orderInformation } = useOrderMyInformation();
-  const { onClickHandler: postcodeHandler } = usePostCode(orderInformation);
   const { setOrderMutate } = orderMutation();
   const {
     register,
@@ -43,6 +42,7 @@ function useOrder({ items }: Props) {
       product: [],
     },
   });
+  const { onClickHandler: postcodeHandler } = usePostCode(setValue);
 
   useEffect(() => {
     if (!items.length) return;
