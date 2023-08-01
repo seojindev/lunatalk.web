@@ -42,12 +42,12 @@ function Product(props: ProductProps) {
         <NextSeo
           title={`루나톡 - ${product.name}`}
           description={product.name}
-          canonical={`https://dev.lunatalk.co.kr`}
+          canonical={`https://lunatalk.co.kr`}
           openGraph={{
             type: 'website',
             site_name: '루나톡',
             title: `루나톡 - ${product.name}`,
-            url: `https://dev.lunatalk.co.kr/product/${product.uuid}`,
+            url: `https://lunatalk.co.kr/product/${product.uuid}`,
             images: [{ url: product.image.rep[0].url, alt: product.name }],
           }}
           twitter={{

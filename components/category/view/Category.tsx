@@ -23,7 +23,7 @@ function Category(props: CategoryProps) {
           type: 'website',
           site_name: '루나톡',
           title: `루나톡 - ${category?.name}`,
-          url: `https://dev.lunatalk.co.kr/category/${category?.uuid}`,
+          url: `https://lunatalk.co.kr/category/${category?.uuid}`,
         }}
         twitter={{
           handle: '@handle',

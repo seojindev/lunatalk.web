@@ -14,9 +14,9 @@ function Main(props: MainProps) {
       <NextSeo
         title={`루나톡 - 가방, 다이어리 판매 브랜드`}
         description={'가방/다이어리 브랜드 루나톡(Lunatalk)'}
-        canonical={'https://dev.lunatalk.co.kr/'}
+        canonical={'https://lunatalk.co.kr/'}
         openGraph={{
-          url: 'https://dev.lunatalk.co.kr/',
+          url: 'https://lunatalk.co.kr/',
         }}
       />
       <Categories categories={categories} />
