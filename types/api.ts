@@ -140,3 +140,41 @@ export interface MyOrderInformation {
     step3: string;
   };
 }
+
+export interface MyPageUserInformation {
+  id: number;
+  uuid: string;
+  name: string;
+}
+
+export interface OrderState {
+  price_before: string;
+  delivery_brfore: string; //backend 오타.
+  delivery_ing: string;
+  delivery_end: string;
+}
+
+export interface OrderProduct {
+  uuid: string;
+  order_name: string;
+  order_price: Price;
+  created_at: {
+    type1: string;
+    type2: string;
+    type3: string;
+  };
+  rep_image: Image;
+  state: {
+    code_id: string;
+    code_name: string;
+  };
+}
+
+export interface MyPage {
+  user_info: MyPageUserInformation;
+  order_state: OrderState;
+  list: {
+    order: OrderProduct[];
+    cancel: OrderProduct[];
+  };
+}

@@ -14,4 +14,5 @@ export const queryKeys = {
   search: 'search',
   order: 'order',
   user: 'user',
+  myPage: 'myPage',
 };
