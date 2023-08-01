@@ -113,6 +113,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const cookie = getCookies(context);
 
   const accessToken = cookie.accessToken as string;
+
+  if (!accessToken) {
+    return {
+      redirect: {
+        destination: '/auth/login',
+        permanent: false,
+      },
+    };
+  }
   const queryClient = new QueryClient();
 
   await Promise.all([
