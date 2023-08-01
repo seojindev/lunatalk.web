@@ -42,3 +42,18 @@ export const emailAddressState = selector({
     }));
   },
 });
+
+export const categoryState = selector({
+  key: 'category',
+  get: ({ get }) => {
+    const appInitData = get(appInitState);
+    if (!appInitData) return [];
+
+    const { product_category: productCategory } = appInitData;
+
+    return _.map(productCategory, (item) => ({
+      name: item.name,
+      uuid: item.uuid,
+    }));
+  },
+});

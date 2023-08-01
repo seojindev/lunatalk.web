@@ -7,13 +7,14 @@ interface CategoryHocProps {
 
 function CategoryHoc(props: CategoryHocProps) {
   const { WrappedComponent } = props;
-  const { optionOnChange, data, options, selectedOption } =
+  const { optionOnChange, data, options, selectedOption, category } =
     useCategoryDataQuery();
 
   const CategoryData = {
     options,
     optionOnChange,
     selectedOption,
+    category,
     items: data?.products
       ? _.compact(
           _.map(data.products, (item) => {
