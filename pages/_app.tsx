@@ -9,8 +9,10 @@ import { queryClient as CustormQueryClient } from '../lib/query/queryClient';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { DefaultSeo } from 'next-seo';
 import SEO from '../seo.config';
+import { Analytics } from '@vercel/analytics/react';
+import { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: any) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => CustormQueryClient);
 
   return (
@@ -20,6 +22,7 @@ function MyApp({ Component, pageProps }: any) {
           <Layout>
             <DefaultSeo {...SEO} />
             <Component {...pageProps} />
+            <Analytics />
           </Layout>
         </Hydrate>
         <ReactQueryDevtools />
