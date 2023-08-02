@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.24.4",
@@ -21,6 +22,7 @@
     "lodash": "^4.17.21",
     "next": "^13.1.6",
     "next-seo": "^6.1.0",
+    "next-sitemap": "^4.1.8",
     "prettier": "^2.8.4",
     "react": "18.2.0",
     "react-daum-postcode": "^3.1.3",
