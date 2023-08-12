@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from 'next';
-import Link from 'next/link';
 import Button from '../../components/auth/elements/Button';
 
 interface Props {

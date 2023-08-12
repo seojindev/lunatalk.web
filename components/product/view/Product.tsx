@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { Product } from '../../../types/api';
 import { Product as CommonProduct } from '../../../types/common';
 import EventProductBox from '../../main/elements/EventProductBox';
