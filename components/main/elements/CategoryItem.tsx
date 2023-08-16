@@ -10,14 +10,14 @@ interface Props {
 function CategoryItem(props: Props) {
   return (
     <Link href={`category/${props.uuid}`} className="cursor-pointer">
-      <div className="relative rounded after:rounded w-[270px] h-[270px] after:w-full after:h-full after:top-0 after:left-0 after:bg-black/30  after:content-[''] after:absolute tablet:w-full tablet:h-full overflow-hidden">
+      <div className="relative rounded after:rounded w-[220px] h-[220px] after:w-full after:h-full after:top-0 after:left-0 after:bg-black/30  after:content-[''] after:absolute tablet:w-full tablet:h-full overflow-hidden">
         {props.url ? (
           <Image
             src={props.url}
             alt={props.name}
             className="block w-full aspect-[1/1] object-cover"
-            width={270}
-            height={270}
+            width={220}
+            height={220}
             loading="lazy"
             placeholder="blur" // 추가
             blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
