@@ -16,7 +16,10 @@ export async function getProductRecommend(uuid: string, accessToken?: string) {
     url: `/api/front/v1/product/${uuid}/recommend`,
     headers: accessTokenAdd(undefined, accessToken),
   });
-  return data.result;
+  if (data.error_message !== '존재하지 않는 상품 입니다.') {
+    throw new Error(data.error_message);
+  }
+  return data.result || [];
 }
 
 export async function productSearch(keyword: string) {
