@@ -36,12 +36,12 @@ function Header(props: Props) {
             height={111}
           />
         </Link>
-        <nav className="flex gap-5 items-center justify-center grid-in-[menu]">
+        <nav className="flex gap-5 items-center justify-center grid-in-[menu] mobile:gap-2">
           {initState?.product_category.map((item) => (
             <Link
               href={`/category/${item.uuid}`}
               key={item.uuid}
-              className='className="text-[16px] tablet:text-[14px] tablet:block tablet:w-full text-center tablet:p-3'
+              className='className="text-[16px] tablet:text-[14px] tablet:block tablet:w-full text-center tablet:p-3 mobile:text-[12px]'
             >
               {item.name}
             </Link>
