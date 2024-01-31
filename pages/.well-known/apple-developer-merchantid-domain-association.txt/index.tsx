@@ -3,13 +3,19 @@ import { useEffect } from 'react';
 import { promises as fs } from 'fs';
 
 const test: NextPage = (props: any) => {
-  const { file } = props;
+  // const { file } = props;
   useEffect(() => {
     // 페이지가 로드되면 파일 다운로드 시작
     downloadFile();
   }, []);
-  const downloadFile = () => {
+  const downloadFile = async () => {
     let fileName = 'apple-developer-merchantid-domain-association.txt';
+    const response = await fetch(
+      '/apple-developer-merchantid-domain-association.txt',
+    );
+
+    console.log(response);
+    const file = await response.text();
     const link = document.createElement('a');
     const blob = new Blob([file], { type: 'text/plain' });
     link.href = URL.createObjectURL(blob);
@@ -24,13 +30,13 @@ const test: NextPage = (props: any) => {
 
 export default test;
 
-export const getServerSideProps = async (context: any) => {
-  const file = await fs.readFile(
-    './public/apple-developer-merchantid-domain-association.txt',
-    'utf8',
-  );
+// export const getServerSideProps = async (context: any) => {
+//   const file = await fs.readFile(
+//     '/apple-developer-merchantid-domain-association.txt',
+//     'utf8',
+//   );
 
-  return {
-    props: { file },
-  };
-};
+//   return {
+//     props: { file },
+//   };
+// };
