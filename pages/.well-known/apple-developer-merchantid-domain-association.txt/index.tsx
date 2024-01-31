@@ -26,7 +26,7 @@ export default test;
 
 export const getServerSideProps = async (context: any) => {
   const file = await fs.readFile(
-    'https://lunatalk.co.kr/apple-developer-merchantid-domain-association.txt/public/apple-developer-merchantid-domain-association.txt',
+    'https://lunatalk.co.kr/apple-developer-merchantid-domain-association.txt',
     'utf8',
   );
   return {
