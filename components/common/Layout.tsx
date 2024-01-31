@@ -13,7 +13,11 @@ function Layout(props: Props) {
   const { children } = props;
   const { data: initState } = useInitDataQuery();
   const router = useRouter();
-  const notHeaderAndFooterPath = ['/search', '/payment'];
+  const notHeaderAndFooterPath = [
+    '/search',
+    '/payment',
+    '/.well-known/apple-developer-merchantid-domain-association.txt',
+  ];
   return (
     <div>
       {!_.includes(notHeaderAndFooterPath, router.pathname) && (
