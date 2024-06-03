@@ -12,11 +12,15 @@ function orderMutation() {
     {
       onSuccess: (response: any) => {
         if (response && _.has(response, 'pay_url')) {
-          return window.open(
-            response.pay_url,
+          const popup = window.open(
+            undefined,
             '_blank',
             'width=800, height=800',
           );
+          if (popup) {
+            popup.location.href = response.pay_url;
+          }
+          return;
         }
         return toast.warning('잠시후 다시 이용해주세요.');
       },
