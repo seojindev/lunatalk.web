@@ -34,13 +34,13 @@ function Register(props: Props) {
     values,
     emailOptions,
     onEmailAddressChange,
-    auth,
-    authOnChange,
-    authCodeSend,
-    authCodeConfirm,
+    // auth,
+    // authOnChange,
+    // authCodeSend,
+    // authCodeConfirm,
     signUpLoading,
-    authConfirmLoading,
-    phoneAuthLoading,
+    // authConfirmLoading,
+    // phoneAuthLoading,
   } = props;
   return (
     <AuthForm handleSubmit={onSubmit}>
