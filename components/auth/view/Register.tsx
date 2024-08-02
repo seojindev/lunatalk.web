@@ -109,7 +109,7 @@ function Register(props: Props) {
           </div>
         </Input>
       </div>
-      <div className="flex flex-row gap-3">
+      {/* <div className="flex flex-row gap-3">
         <Input
           placeHolder="휴대폰번호 010부터 - 없이 입력"
           type="text"
@@ -147,7 +147,7 @@ function Register(props: Props) {
             onClick={() => authCodeConfirm(auth.authIndex, auth.authCode)}
           />
         </div>
-      ) : null}
+      ) : null} */}
 
       <div className="flex flex-col -tracking-[1px] text-sm gap-1">
         <label className="flex flex-row gap-3">
