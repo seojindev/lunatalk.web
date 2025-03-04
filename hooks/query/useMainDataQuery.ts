@@ -34,7 +34,9 @@ function useMainDataQuery(): MainData {
       },
       {
         queryKey: [queryKeys.main.bestItems],
-        queryFn: () => getMainBestItemData(accessToken),
+        queryFn: async () => {
+          const result = getMainBestItemData(accessToken);
+        },
       },
       {
         queryKey: [queryKeys.main.newItems],

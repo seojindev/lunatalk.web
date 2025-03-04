@@ -7,7 +7,7 @@ interface NewItemProps {
 
 function NewItem(props: NewItemProps) {
   const { items } = props;
-  return <EventProductBox name={'NEW ITEM'} items={items} />;
+  return <EventProductBox name={'NEW ITEM'} items={[]} />;
 }
 
 export default NewItem;
