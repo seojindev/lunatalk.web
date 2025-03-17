@@ -20,7 +20,7 @@ function MyOrderContext({ title, order }: Props) {
             key={item.uuid + index}
             className="flex justify-between flex-grow text-sm items-center gap-2 border-b-[1px] py-5 tablet:flex-col tablet:items-center tablet:justify-center"
           >
-            <Image
+            <img
               src={item.rep_image.url}
               width={96}
               height={96}

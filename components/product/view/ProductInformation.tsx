@@ -24,14 +24,14 @@ function ProductInformation(props: ProductInformationProps) {
   return (
     <div className="grid grid-cols-2 tablet:grid-cols-1 gap-3">
       <div className="flex justify-center w-[400px] mx-auto tablet:w-full tablet:max-w-[400px]">
-        <Image
+        <img
           src={item.image.rep[0].url}
           width={280}
           height={280}
           alt="이미지"
           className="block w-full"
           placeholder="blur" // 추가
-          blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
+          // blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
         />
       </div>
       <div className="flex flex-col gap-3 flex-wrap">

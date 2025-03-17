@@ -10,7 +10,7 @@ function CartItem(props: CartItemProps) {
   return (
     <div className="flex flex-row justify-between items-center border-b-[1px] p-3">
       <div className="flex flex-row gap-10 tablet:gap-5">
-        <Image
+        <img
           src={item.rep_image.url}
           width={100}
           height={100}

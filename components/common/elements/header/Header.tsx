@@ -27,7 +27,7 @@ function Header(props: Props) {
           href={'/'}
           className="cursor-pointer grid-in-[logo] w-[103px] tablet:w-[95px]"
         >
-          <Image
+          <img
             src={
               'http://admin.lunatalk.co.kr/static/media/logo.e0e49014f4ed6f070031.jpg'
             }

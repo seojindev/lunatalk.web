@@ -16,7 +16,7 @@ function ProductItem(props: ProductItemProps) {
         <div>
           {item.rep_image.url && (
             <div className="max-w-[250px] overflow-hidden aspect-[1/1]">
-              <Image
+              <img
                 src={item.rep_image.url}
                 alt={item.name}
                 width={400}
@@ -24,7 +24,7 @@ function ProductItem(props: ProductItemProps) {
                 className="block"
                 loading="lazy"
                 placeholder="blur" // 추가
-                blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
+                // blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
               />
             </div>
           )}

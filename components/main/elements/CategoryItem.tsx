@@ -12,7 +12,7 @@ function CategoryItem(props: Props) {
     <Link href={`category/${props.uuid}`} className="cursor-pointer">
       <div className="relative rounded after:rounded after:w-full after:h-full after:top-0 after:left-0 after:bg-black/30  after:content-[''] after:absolute tablet:w-full tablet:h-full overflow-hidden">
         {props.url ? (
-          <Image
+          <img
             src={props.url}
             alt={props.name}
             className="block w-full aspect-[1/1] object-cover"
@@ -20,7 +20,7 @@ function CategoryItem(props: Props) {
             height={220}
             loading="lazy"
             placeholder="blur" // 추가
-            blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
+            // blurDataURL="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==" // 추가
           />
         ) : (
           <div className="w-full h-full"></div>
