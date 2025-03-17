@@ -7,7 +7,7 @@ interface BestItemProps {
 
 function BestItem(props: BestItemProps) {
   const { items } = props;
-  return <EventProductBox name={'BEST ITEM'} items={[]} />;
+  return <EventProductBox name={'BEST ITEM'} items={items} />;
 }
 
 export default BestItem;
